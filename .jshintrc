@@ -1,6 +1,7 @@
 {
     "browser": true,
     "devel": true,
+    "jquery": true,
     "unused": true,
     "undef": true,
     "globals": {
