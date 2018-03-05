@@ -1,0 +1,29 @@
+{
+  "name": "dwv-static",
+  "version": "0.1.0-beta",
+  "description": "Static viewer using DWV.",
+  "keywords": [
+    "DICOM",
+    "medical",
+    "imaging"
+  ],
+  "license": "GPL-3.0",
+  "author": "ivmartel <ivmartel@gmail.com>",
+  "homepage": "https://ivmartel.github.io/dwv-static/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ivmartel/dwv-static.git"
+  },
+  "dependencies": {
+    "dwv": "~0.22.1",
+    "jquery": "~2.1.4"
+  },
+  "devDependencies": {
+    "grunt": "~1.0.1",
+    "grunt-cli": "~1.2",
+    "grunt-contrib-jshint": "~1.1.0"
+  },
+  "scripts": {
+    "test": "grunt publish --verbose"
+  }
+}
