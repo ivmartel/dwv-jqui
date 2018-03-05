@@ -1,0 +1,33 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# source code
+*.js text
+*.json text
+*.lua text
+*.sh text
+*.html text
+*.css text
+*.xml text
+*.svg text
+
+# git config
+.gitattributes text
+.gitignore text
+
+# misc config
+.jshintrc text
+.project text
+*.epf text
+*.webapp text
+*.yml text
+*.map text
+
+# documentation
+*.md text
+
+# binary (should be left untouched)
+*.dcm binary
+*.png binary
+*.jpg binary
+*.gif binary
