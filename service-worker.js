@@ -43,19 +43,19 @@ var urlsToCache = [
     // third party
 
     // css
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/jquery-ui-1.12.1.min.css',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-bg_glass_20_555555_1x400.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-bg_glass_40_0078a3_1x400.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-bg_glass_40_ffc73d_1x400.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-bg_gloss-wave_25_333333_500x100.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-bg_highlight-soft_80_eeeeee_1x100.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-bg_inset-soft_25_000000_1x100.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-bg_inset-soft_30_f58400_1x100.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-icons_222222_256x240.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-icons_4b8e0b_256x240.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-icons_a83300_256x240.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-icons_cccccc_256x240.png',
-    './node_modules/dwv/ext/jquery-ui/themes/ui-darkness/images/ui-icons_ffffff_256x240.png',
+    './ext/jquery-ui/themes/ui-darkness/jquery-ui-1.12.1.min.css',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-bg_glass_20_555555_1x400.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-bg_glass_40_0078a3_1x400.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-bg_glass_40_ffc73d_1x400.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-bg_gloss-wave_25_333333_500x100.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-bg_highlight-soft_80_eeeeee_1x100.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-bg_inset-soft_25_000000_1x100.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-bg_inset-soft_30_f58400_1x100.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-icons_222222_256x240.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-icons_4b8e0b_256x240.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-icons_a83300_256x240.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-icons_cccccc_256x240.png',
+    './ext/jquery-ui/themes/ui-darkness/images/ui-icons_ffffff_256x240.png',
     // js: dwv
     './node_modules/dwv/dist/dwv.min.js',
     './node_modules/dwv/ext/modernizr/modernizr.js',
@@ -67,7 +67,7 @@ var urlsToCache = [
     './node_modules/dwv/ext/magic-wand/magic-wand.js',
     // js: viewer
     './node_modules/jquery/dist/jquery.min.js',
-    './node_modules/dwv/ext/jquery-ui/jquery-ui-1.12.1.min.js',
+    './ext/jquery-ui/jquery-ui-1.12.1.min.js',
     './node_modules/dwv/ext/flot/jquery.flot.min.js',
     // js: decoders
     './node_modules/dwv/decoders/pdfjs/jpx.js',
