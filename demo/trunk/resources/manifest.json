@@ -4,8 +4,8 @@
   "description": "Static viewer using DWV.",
   "start_url": "/dwv-static/demo/trunk/index.html",
   "display": "standalone",
-  "background_color": "#3E4EB8",
-  "theme_color": "#2F3BA2",
+  "background_color": "#4eb83e",
+  "theme_color": "#3ba22f",
   "icons": [{
       "src": "/dwv-static/demo/trunk/resources/icons/dwv-16.png",
       "sizes": "16x16",
