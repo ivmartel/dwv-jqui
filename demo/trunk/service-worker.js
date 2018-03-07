@@ -3,7 +3,7 @@
 // https://developers.google.com/web/fundamentals/primers/service-workers/
 // chrome: chrome://inspect/#service-workers
 
-var CACHE_NAME = 'dwv-static-cache-v1';
+var CACHE_NAME = 'dwv-static-cache-v2';
 var urlsToCache = [
     './',
     // css
@@ -64,11 +64,11 @@ var urlsToCache = [
     './node_modules/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js',
     './node_modules/jszip/dist/jszip.min.js',
     './node_modules/konva/konva.min.js',
-    './node_modules/dwv/ext/magic-wand/magic-wand.js',
+    './node_modules/magic-wand-js/js/magic-wand-min.js',
     // js: viewer
     './node_modules/jquery/dist/jquery.min.js',
     './ext/jquery-ui/jquery-ui-1.12.1.min.js',
-    './node_modules/dwv/ext/flot/jquery.flot.min.js',
+    './ext/flot/jquery.flot.min.js',
     // js: decoders
     './node_modules/dwv/decoders/pdfjs/jpx.js',
     './node_modules/dwv/decoders/pdfjs/arithmetic_decoder.js',

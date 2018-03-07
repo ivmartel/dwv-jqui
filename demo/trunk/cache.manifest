@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# v01 2018-03-05
+# v02 2018-03-07
 
 CACHE:
 
@@ -63,11 +63,11 @@ appgui.js
 /dwv-static/node_modules/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js
 /dwv-static/node_modules/jszip/dist/jszip.min.js
 /dwv-static/node_modules/konva/konva.min.js
-/dwv-static/node_modules/dwv/ext/magic-wand/magic-wand.js
+/dwv-static/node_modules/magic-wand-js/js/magic-wand-min.js
 # js: viewer
 /dwv-static/node_modules/jquery/dist/jquery.min.js
 /dwv-static/ext/jquery-ui/jquery-ui-1.12.1.min.js
-/dwv-static/node_modules/dwv/ext/flot/jquery.flot.min.js
+/dwv-static/ext/flot/jquery.flot.min.js
 # js: decoders
 /dwv-static/node_modules/dwv/decoders/pdfjs/jpx.js
 /dwv-static/node_modules/dwv/decoders/pdfjs/arithmetic_decoder.js
