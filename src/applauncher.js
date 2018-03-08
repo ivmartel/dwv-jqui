@@ -19,7 +19,7 @@ function startApp() {
         "filters": ["Threshold", "Sharpen", "Sobel"],
         "shapes": ["Arrow", "Ruler", "Protractor", "Rectangle", "Roi", "Ellipse", "FreeHand"],
         "isMobile": false,
-        "helpResourcesPath": "node_modules/dwv/resources/help"
+        "helpResourcesPath": "resources/help"
     };
     if ( dwv.browser.hasInputDirectory() ) {
         options.loaders.splice(1, 0, "Folder");
