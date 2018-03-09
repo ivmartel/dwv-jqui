@@ -82,7 +82,6 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-
 // DOM ready?
 $(document).ready( function() {
     domContentLoaded = true;
