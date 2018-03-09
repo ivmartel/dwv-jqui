@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>dwv-static</title>
+<title>dwv-jqui</title>
 <meta charset='utf-8' />
 <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-<meta name="description" content="dwv-static: static viewer using DWV (DICOM Web Viewer)." />
+<meta name="description" content="Medical viewer using DWV (DICOM Web Viewer) and jQuery UI." />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 <style>
@@ -177,14 +177,14 @@ window.onload = function() {
 <!-- HEADER -->
 <div id="header_wrap" class="outer">
 <header class="inner">
-<a id="forkme_banner" href="https://github.com/ivmartel/dwv-static">Fork Me on GitHub</a>
+<a id="forkme_banner" href="https://github.com/ivmartel/dwv-jqui">Fork Me on GitHub</a>
 
-<h1 id="project_title">dwv-static</h1>
-<h2 id="project_tagline">Static viewer using DWV (DICOM Web Viewer).</h2>
+<h1 id="project_title">dwv-jqui</h1>
+<h2 id="project_tagline">Medical viewer using DWV (DICOM Web Viewer) and jQuery UI.</h2>
 
 <section id="downloads">
-<a class="zip_download_link" href="https://github.com/ivmartel/dwv-static/zipball/master">Download this project as a .zip file</a>
-<a class="tar_download_link" href="https://github.com/ivmartel/dwv-static/tarball/master">Download this project as a tar.gz file</a>
+<a class="zip_download_link" href="https://github.com/ivmartel/dwv-jqui/zipball/master">Download this project as a .zip file</a>
+<a class="tar_download_link" href="https://github.com/ivmartel/dwv-jqui/tarball/master">Download this project as a tar.gz file</a>
 </section>
 </header>
 </div>
@@ -193,18 +193,20 @@ window.onload = function() {
 <div id="main_content_wrap" class="outer">
 <section id="main_content" class="inner">
 
-<p><a href="https://github.com/ivmartel/dwv">DWV</a> (DICOM Web Viewer) is an open source zero footprint medical image viewer.
+<p><a href="https://github.com/ivmartel/dwv">DWV</a> (DICOM Web Viewer) is an open source zero footprint medical image viewer library.
 It uses only javascript and HTML5 technologies, meaning that it can be run on any
 platform that provides a modern browser (laptop, tablet, phone and even modern TVs).
 It can load local or remote data in DICOM format (the standard for medical imaging
-data such as MR, CT, Echo, Mammo, NM...) and provides standard tools for its
+data such as MR, CT, Echo, Mammo, NM...).</p>
+
+This viewer provides standard tools for its
 manipulation such as contrast, zoom, drag, possibility to draw regions on top of the
 image and imaging filters such as threshold and sharpening.</p>
 
 <p>Here are a few data example that are displayed as they could
 be on a web interface to a PACS system. Click <a href="#" id="empty-launch" class="dwvlink">here</a> 
 for a direct launch or click on a list item 
-to launch dwv-static with the selected data.</p>
+to launch the viewer with the selected data.</p>
 
 <ul class="listview" id="uldatadicom"></ul>
 
@@ -233,7 +235,7 @@ to launch dwv-static with the selected data.</p>
 <!-- FOOTER  -->
 <div id="footer_wrap" class="outer">
 <footer class="inner">
-<p class="copyright">dwv-static maintained by <a href="https://github.com/ivmartel">ivmartel</a></p>
+<p class="copyright">dwv-jqui maintained by <a href="https://github.com/ivmartel">ivmartel</a></p>
 <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
 </footer>
 </div>
