@@ -1,7 +1,7 @@
 {
   "name": "dwv-jqui",
   "short_name": "dwv-jqui",
-  "description": "Static viewer using DWV.",
+  "description": "Medical viewer using DWV (DICOM Web Viewer) and jQuery UI.",
   "start_url": "/dwv-jqui/demo/trunk/index.html",
   "display": "standalone",
   "background_color": "#4eb83e",
