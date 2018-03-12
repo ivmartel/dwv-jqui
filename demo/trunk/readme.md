@@ -1,6 +1,8 @@
 dwv-jqui
 ========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ivmartel/dwv-jqui.svg)](https://greenkeeper.io/)
+
 Medical viewer using [DWV](https://github.com/ivmartel/dwv) (DICOM Web Viewer) and [jQuery UI](http://jqueryui.com/).
 
 All coding/implementation contributions and comments are welcome.
