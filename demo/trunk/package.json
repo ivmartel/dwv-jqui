@@ -19,13 +19,13 @@
     "jquery": "~2.1.4"
   },
   "devDependencies": {
-    "http-server": "^0.11.1",
     "grunt": "~1.0.1",
     "grunt-cli": "~1.2",
-    "grunt-contrib-jshint": "~1.1.0"
+    "grunt-contrib-jshint": "~1.1.0",
+    "http-server": "^0.11.1"
   },
   "scripts": {
-    "dev": "http-server",
+    "start": "http-server",
     "test": "grunt test --verbose"
   }
 }
