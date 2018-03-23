@@ -15,7 +15,7 @@ dwv-jqui is not certified for diagnostic use. Released under GNU GPL-3.0 license
 yarn install
 
 # serve at localhost:8080
-yarn run dev
+yarn run start
 
 # run unit tests
 yarn run test
