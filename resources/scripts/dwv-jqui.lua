@@ -143,9 +143,9 @@ function startApp() {
         "filters": ["Threshold", "Sharpen", "Sobel"],
         "shapes": ["Arrow", "Ruler", "Protractor", "Rectangle", "Roi", "Ellipse", "FreeHand"],
         "isMobile": false,
-        "helpResourcesPath": "resources/help",
+        "helpResourcesPath": "/dwv-jqui/resources/help",
         "skipLoadUrl": true
-    });
+    };
     if ( dwv.browser.hasInputDirectory() ) {
         options.loaders.splice(1, 0, "Folder");
     }
@@ -207,7 +207,7 @@ print([[
 // check browser support
 dwv.browser.check();
 // initialise i18n
-dwv.i18nInitialise("auto", "node_modules/dwv");
+dwv.i18nInitialise("auto", "/dwv-jqui/node_modules/dwv");
 // DOM ready?
 $(document).ready( function() {
     domContentLoaded = true;
