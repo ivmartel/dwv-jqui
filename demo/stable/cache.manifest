@@ -1,0 +1,81 @@
+CACHE MANIFEST
+# v02 2018-03-07
+
+CACHE:
+
+# html
+/dwv-jqui/demo/stable/index.html
+# css
+/dwv-jqui/demo/stable/css/style.css
+# js
+/dwv-jqui/demo/stable/src/applauncher.js
+/dwv-jqui/demo/stable/src/appgui.js
+# images
+/dwv-jqui/demo/stable/resources/icons/dwv-16.png
+/dwv-jqui/demo/stable/resources/icons/dwv-32.png
+/dwv-jqui/demo/stable/resources/icons/dwv-64.png
+/dwv-jqui/demo/stable/resources/icons/dwv-128.png
+/dwv-jqui/demo/stable/resources/icons/dwv-256.png
+/dwv-jqui/demo/stable/resources/help/click.png
+/dwv-jqui/demo/stable/resources/help/double_click.png
+/dwv-jqui/demo/stable/resources/help/mouse_drag.png
+/dwv-jqui/demo/stable/resources/help/mouse_wheel.png
+# translations
+/dwv-jqui/demo/stable/node_modules/dwv/locales/de/translation.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/en/translation.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/es/translation.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/fr/translation.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/it/translation.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/jp/translation.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/ru/translation.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/zh/translation.json
+# overlays
+/dwv-jqui/demo/stable/node_modules/dwv/locales/de/overlays.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/en/overlays.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/es/overlays.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/fr/overlays.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/it/overlays.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/jp/overlays.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/ru/overlays.json
+/dwv-jqui/demo/stable/node_modules/dwv/locales/zh/overlays.json
+
+# third party
+
+# css
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/jquery-ui-1.12.1.min.css
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-bg_glass_20_555555_1x400.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-bg_glass_40_0078a3_1x400.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-bg_glass_40_ffc73d_1x400.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-bg_gloss-wave_25_333333_500x100.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-bg_highlight-soft_80_eeeeee_1x100.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-bg_inset-soft_25_000000_1x100.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-bg_inset-soft_30_f58400_1x100.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-icons_222222_256x240.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-icons_4b8e0b_256x240.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-icons_a83300_256x240.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-icons_cccccc_256x240.png
+/dwv-jqui/demo/stable/ext/jquery-ui/themes/ui-darkness/images/ui-icons_ffffff_256x240.png
+# js: dwv
+/dwv-jqui/demo/stable/node_modules/dwv/dist/dwv.min.js
+/dwv-jqui/demo/stable/node_modules/i18next/i18next.min.js
+/dwv-jqui/demo/stable/node_modules/i18next-xhr-backend/i18nextXHRBackend.min.js
+/dwv-jqui/demo/stable/node_modules/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js
+/dwv-jqui/demo/stable/node_modules/jszip/dist/jszip.min.js
+/dwv-jqui/demo/stable/node_modules/konva/konva.min.js
+/dwv-jqui/demo/stable/node_modules/magic-wand-js/js/magic-wand-min.js
+# js: viewer
+/dwv-jqui/demo/stable/node_modules/jquery/dist/jquery.min.js
+/dwv-jqui/demo/stable/ext/jquery-ui/jquery-ui-1.12.1.min.js
+/dwv-jqui/demo/stable/ext/flot/jquery.flot.min.js
+# js: decoders
+/dwv-jqui/demo/stable/node_modules/dwv/decoders/pdfjs/jpx.js
+/dwv-jqui/demo/stable/node_modules/dwv/decoders/pdfjs/arithmetic_decoder.js
+/dwv-jqui/demo/stable/node_modules/dwv/decoders/pdfjs/decode-jpeg2000.js
+/dwv-jqui/demo/stable/node_modules/dwv/decoders/pdfjs/util.js
+/dwv-jqui/demo/stable/node_modules/dwv/decoders/pdfjs/jpg.js
+/dwv-jqui/demo/stable/node_modules/dwv/decoders/pdfjs/decode-jpegbaseline.js
+/dwv-jqui/demo/stable/node_modules/dwv/decoders/rii-mango/lossless-min.js
+/dwv-jqui/demo/stable/node_modules/dwv/decoders/rii-mango/decode-jpegloss.js
+
+NETWORK:
+*

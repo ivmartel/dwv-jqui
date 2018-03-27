@@ -1,4 +1,108 @@
+<!DOCTYPE html>
+<!-- <html manifest="cache.manifest"> -->
 <html>
-<head></head>
-<body>Not available yet...</body>
+
+<head>
+<title>DICOM Web Viewer</title>
+<meta charset="UTF-8">
+<meta name="description" content="Medical viewer using DWV (DICOM Web Viewer) and jQuery UI.">
+<meta name="keywords" content="DICOM,HTML5,JavaScript,medical,imaging,DWV">
+<meta name="theme-color" content="#3ba22f"/>
+<link rel="manifest" href="resources/manifest.json">
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<link type="text/css" rel="stylesheet" href="ext/jquery-ui/themes/ui-darkness/jquery-ui-1.12.1.min.css">
+<style type="text/css" >
+.ui-widget-content { background-color: #222; background-image: url();}
+</style>
+<!-- mobile web app -->
+<meta name="mobile-web-app-capable" content="no" />
+<!-- apple specific -->
+<meta name="apple-mobile-web-app-capable" content="no" />
+<!-- Third party (dwv) -->
+<script type="text/javascript" src="node_modules/i18next/i18next.min.js"></script>
+<script type="text/javascript" src="node_modules/i18next-xhr-backend/i18nextXHRBackend.min.js"></script>
+<script type="text/javascript" src="node_modules/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js"></script>
+<script type="text/javascript" src="node_modules/jszip/dist/jszip.min.js"></script>
+<script type="text/javascript" src="node_modules/konva/konva.min.js"></script>
+<script type="text/javascript" src="node_modules/magic-wand-js/js/magic-wand-min.js"></script>
+<!-- Third party (viewer) -->
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="ext/jquery-ui/jquery-ui-1.12.1.min.js"></script>
+<script type="text/javascript" src="ext/flot/jquery.flot.min.js"></script>
+<!-- decoders -->
+<script type="text/javascript" src="node_modules/dwv/decoders/pdfjs/jpx.js"></script>
+<script type="text/javascript" src="node_modules/dwv/decoders/pdfjs/util.js"></script>
+<script type="text/javascript" src="node_modules/dwv/decoders/pdfjs/arithmetic_decoder.js"></script>
+<script type="text/javascript" src="node_modules/dwv/decoders/pdfjs/jpg.js"></script>
+<script type="text/javascript" src="node_modules/dwv/decoders/rii-mango/lossless-min.js"></script>
+<!-- dwv -->
+<script type="text/javascript" src="node_modules/dwv/dist/dwv.min.js"></script>
+<!-- Launch the app -->
+<script type="text/javascript" src="src/appgui.js"></script>
+<script type="text/javascript" src="src/applauncher.js"></script>
+</head>
+
+<body>
+
+<!-- DWV -->
+<div id="dwv">
+
+<div id="pageHeader">
+
+<!-- Title -->
+<h1>DWV <span class="dwv-version"></span></h1>
+
+<!-- Toolbar -->
+<div class="toolbar"></div>
+
+</div><!-- /pageHeader -->
+
+<div id="pageMain">
+
+<!-- Open file -->
+<div class="openData" title="File">
+<div class="loaderlist"></div>
+<div id="progressbar"></div>
+</div>
+
+<!-- Toolbox -->
+<div class="toolList" title="Toolbox"></div>
+
+<!-- History -->
+<div class="history" title="History"></div>
+
+<!-- Tags -->
+<div class="tags" title="Tags"></div>
+
+<!-- DrawList -->
+<div class="drawList" title="Draw list"></div>
+
+<!-- Help -->
+<div class="help" title="Help"></div>
+
+<!-- Layer Container -->
+<div class="layerDialog" title="Image">
+<div class="dropBox"></div>
+<div class="layerContainer">
+<canvas class="imageLayer">Only for HTML5 compatible browsers...</canvas>
+<div class="drawDiv"></div>
+<div class="infoLayer">
+<div class="infotl"></div>
+<div class="infotc"></div>
+<div class="infotr"></div>
+<div class="infocl"></div>
+<div class="infocr"></div>
+<div class="infobl"></div>
+<div class="infobc"></div>
+<div class="infobr" style="bottom: 64px;"></div>
+<div class="plot"></div>
+</div><!-- /infoLayer -->
+</div><!-- /layerContainer -->
+</div><!-- /layerDialog -->
+
+</div><!-- /pageMain -->
+
+</div><!-- /dwv -->
+
+</body>
 </html>
