@@ -3,7 +3,7 @@
 // https://developers.google.com/web/fundamentals/primers/service-workers/
 // chrome: chrome://inspect/#service-workers
 
-var CACHE_NAME = 'dwv-jqui-cache_v0.2.0';
+var CACHE_NAME = 'dwv-jqui-cache_v0.3.0-beta';
 var urlsToCache = [
     './',
     './index.html',
