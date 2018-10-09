@@ -27,10 +27,6 @@ dwv.tool.defaultpresets.CT = {
 //decode query
 dwv.utils.decodeQuery = dwv.utils.base.decodeQuery;
 
-// Window
-dwv.gui.getWindowSize = function () {
-    return { 'width': ($('#pageMain').width() - 360), 'height': ($('#pageMain').height() - 75) };
-};
 // Prompt
 dwv.gui.prompt = dwv.gui.base.prompt;
 // Progress
@@ -285,7 +281,9 @@ dwv.gui.setup = function () {
         appendTo: "#dwv"
     });
     // default size
-    $(".layerDialog").dialog({ width: "auto", resizable: false });
+    // width: http://api.jqueryui.com/dialog/#option-width
+    // "auto" is not documented but has an effect...
+    $(".layerDialog").dialog({ width: "auto", resizable: true });
     // Resizable but keep aspect ratio
     // TODO it seems to add a border that bothers getting the cursor position...
     //$("#layerContainer").resizable({ aspectRatio: true });

@@ -12,7 +12,6 @@ function startApp() {
     // initialise the application
     var options = {
         "containerDivId": "dwv",
-        "fitToWindow": true,
         "gui": ["tool", "load", "help", "undo", "version", "tags", "drawList"],
         "loaders": ["File", "Url"],
         "tools": ["Scroll", "WindowLevel", "ZoomAndPan", "Draw", "Livewire", "Filter", "Floodfill"],
