@@ -3,7 +3,7 @@
 // https://developers.google.com/web/fundamentals/primers/service-workers/
 // chrome: chrome://inspect/#service-workers
 
-var CACHE_NAME = 'dwv-jqui-cache_v0.2.0';
+var CACHE_NAME = 'dwv-jqui-cache_v0.3.0';
 var urlsToCache = [
     './',
     './index.html',
@@ -71,6 +71,8 @@ var urlsToCache = [
     './ext/jquery-ui/jquery-ui-1.12.1.min.js',
     './ext/flot/jquery.flot.min.js',
     // js: decoders
+    './node_modules/dwv/decoders/dwv/rle.js',
+    './node_modules/dwv/decoders/dwv/decode-rle.js',
     './node_modules/dwv/decoders/pdfjs/jpx.js',
     './node_modules/dwv/decoders/pdfjs/arithmetic_decoder.js',
     './node_modules/dwv/decoders/pdfjs/decode-jpeg2000.js',
