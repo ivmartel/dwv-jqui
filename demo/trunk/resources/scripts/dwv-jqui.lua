@@ -111,6 +111,7 @@ print([[
 
 print([[
 <!-- Decoders -->
+<script type="text/javascript" src="/dwv-jqui/node_modules/dwv/decoders/dwv/rle.js"></script>
 <script type="text/javascript" src="/dwv-jqui/node_modules/dwv/decoders/pdfjs/jpx.js"></script>
 <script type="text/javascript" src="/dwv-jqui/node_modules/dwv/decoders/pdfjs/util.js"></script>
 <script type="text/javascript" src="/dwv-jqui/node_modules/dwv/decoders/pdfjs/arithmetic_decoder.js"></script>
@@ -175,7 +176,8 @@ print([[
 dwv.image.decoderScripts = {
     "jpeg2000": "/dwv-jqui/node_modules/dwv/decoders/pdfjs/decode-jpeg2000.js",
     "jpeg-lossless": "/dwv-jqui/node_modules/dwv/decoders/rii-mango/decode-jpegloss.js",
-    "jpeg-baseline": "/dwv-jqui/node_modules/dwv/decoders/pdfjs/decode-jpegbaseline.js"
+    "jpeg-baseline": "/dwv-jqui/node_modules/dwv/decoders/pdfjs/decode-jpegbaseline.js",
+    "jpeg-baseline": "/dwv-jqui/node_modules/dwv/decoders/dwv/decode-rle.js"
 };
 // status flags
 var domContentLoaded = false;
