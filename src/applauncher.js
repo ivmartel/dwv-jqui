@@ -5,7 +5,7 @@
 // start app function
 function startApp() {
     // gui setup
-    dwv.gui.setup();
+    dwvjq.gui.setup();
 
     // main application
     var myapp = new dwv.App();

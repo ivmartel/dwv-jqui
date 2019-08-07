@@ -1,3 +1,6 @@
+// namespaces
+var dwvjq = dwvjq || {};
+
 /**
  * Application GUI.
  */
@@ -28,45 +31,16 @@ dwv.tool.defaultpresets.CT = {
 dwv.utils.decodeQuery = dwv.utils.base.decodeQuery;
 
 // Prompt
-dwv.gui.prompt = dwv.gui.base.prompt;
-// Progress
-dwv.gui.displayProgress = function (percent) {
-    // jquery-ui progress bar
-    if( percent <= 100 ) {
-        $("#progressbar").progressbar({ value: percent });
-    }
-};
-// Focus
-dwv.gui.focusImage = dwv.gui.base.focusImage;
+dwv.gui.prompt = dwvjq.gui.prompt;
 // get element
-dwv.gui.getElement = dwv.gui.base.getElement;
-// refresh
-dwv.gui.refreshElement = dwv.gui.base.refreshElement;
-// Slider
-dwv.gui.Slider = function (app)
-{
-    this.append = function ()
-    {
-        // nothing to do
-    };
-    this.initialise = function ()
-    {
-        var min = app.getImage().getDataRange().min;
-        var max = app.getImage().getDataRange().max;
+dwv.gui.getElement = dwvjq.gui.getElement;
 
-        // jquery-ui slider
-        $( ".thresholdLi" ).slider({
-            range: true,
-            min: min,
-            max: max,
-            values: [ min, max ],
-            slide: function( event, ui ) {
-                app.onChangeMinMax(
-                        {'min':ui.values[0], 'max':ui.values[1]});
-            }
-        });
-    };
-};
+// Progress
+dwv.gui.displayProgress = dwvjq.gui.displayProgress;
+// Focus
+dwv.gui.focusImage = dwvjq.gui.focusImage;
+// refresh
+dwv.gui.refreshElement = dwvjq.gui.refreshElement;
 // plot
 dwv.gui.plot = function (div, data, options)
 {
@@ -82,7 +56,23 @@ dwv.gui.plot = function (div, data, options)
     }
     $.plot(div, [ data ], plotOptions);
 };
+// Post process table
+dwv.gui.postProcessTable = dwvjq.gui.postProcessTable;
+// Tags table
+dwv.gui.DicomTags = dwvjq.gui.DicomTags;
+// DrawList table
+dwv.gui.DrawList = dwvjq.gui.DrawList;
 
+// Loaders
+dwv.gui.Loadbox = dwvjq.gui.Loadbox;
+// File loader
+dwv.gui.FileLoad = dwvjq.gui.FileLoad;
+// Folder loader
+dwv.gui.FolderLoad = dwvjq.gui.FolderLoad;
+// Url loader
+dwv.gui.UrlLoad = dwvjq.gui.UrlLoad;
+
+// tool toggle
 function toggle(dialogId)
 {
     if( $(dialogId).dialog('isOpen') ) {
@@ -92,28 +82,13 @@ function toggle(dialogId)
         $(dialogId).dialog('open');
     }
 }
-// post process table
-dwv.gui.postProcessTable = dwv.gui.base.postProcessTable;
-// Tags table
-dwv.gui.DicomTags = dwv.gui.base.DicomTags;
-// DrawList table
-dwv.gui.DrawList = dwv.gui.base.DrawList;
-
-// Loaders
-dwv.gui.Loadbox = dwv.gui.base.Loadbox;
-// File loader
-dwv.gui.FileLoad = dwv.gui.base.FileLoad;
-// File loader
-dwv.gui.FolderLoad = dwv.gui.base.FolderLoad;
-// Url loader
-dwv.gui.UrlLoad =  dwv.gui.base.UrlLoad;
 
 // Toolbox
 dwv.gui.Toolbox = function (app)
 {
-    var base = new dwv.gui.base.Toolbox(app);
+    var base = new dwvjq.gui.Toolbox(app);
 
-    this.setup = function(list)
+    this.setup = function (list)
     {
         base.setup(list);
 
@@ -203,9 +178,9 @@ dwv.gui.Toolbox = function (app)
         node = app.getElement("openData");
         node.appendChild(toggleSaveState);
     };
-    this.display = function (bool)
+    this.display = function (flag)
     {
-        base.display(bool);
+        base.display(flag);
     };
     this.initialise = function (list)
     {
@@ -213,35 +188,35 @@ dwv.gui.Toolbox = function (app)
     };
 };
 
-//Window/level
-dwv.gui.WindowLevel = dwv.gui.base.WindowLevel;
+// Window/level
+dwv.gui.WindowLevel = dwvjq.gui.WindowLevel;
 // Draw
-dwv.gui.Draw = dwv.gui.base.Draw;
+dwv.gui.Draw = dwvjq.gui.Draw;
 // ColourTool
-dwv.gui.ColourTool = dwv.gui.base.ColourTool;
+dwv.gui.ColourTool = dwvjq.gui.ColourTool;
 // ZoomAndPan
-dwv.gui.ZoomAndPan = dwv.gui.base.ZoomAndPan;
+dwv.gui.ZoomAndPan = dwvjq.gui.ZoomAndPan;
 // Scroll
-dwv.gui.Scroll = dwv.gui.base.Scroll;
+dwv.gui.Scroll = dwvjq.gui.Scroll;
 // Filter
-dwv.gui.Filter = dwv.gui.base.Filter;
+dwv.gui.Filter = dwvjq.gui.Filter;
 
 // Filter: threshold
-dwv.gui.Threshold = dwv.gui.base.Threshold;
+dwv.gui.Threshold = dwvjq.gui.Threshold;
 // Filter: sharpen
-dwv.gui.Sharpen = dwv.gui.base.Sharpen;
+dwv.gui.Sharpen = dwvjq.gui.Sharpen;
 // Filter: sobel
-dwv.gui.Sobel = dwv.gui.base.Sobel;
+dwv.gui.Sobel = dwvjq.gui.Sobel;
 
 // Undo/redo
-dwv.gui.Undo = dwv.gui.base.Undo;
+dwv.gui.Undo = dwvjq.gui.Undo;
 // Help
-dwv.gui.appendHelpHtml = dwv.gui.base.appendHelpHtml;
+dwv.gui.appendHelpHtml = dwvjq.gui.appendHelpHtml;
 // Version
-dwv.gui.appendVersionHtml = dwv.gui.base.appendVersionHtml;
+dwv.gui.appendVersionHtml = dwvjq.gui.appendVersionHtml;
 
 // special setup
-dwv.gui.setup = function () {
+dwvjq.gui.setup = function () {
     $(".toggleInfoLayer").button({ icons:
         { primary: "ui-icon-comment" }, text: false,
         appendTo: "#dwv"
