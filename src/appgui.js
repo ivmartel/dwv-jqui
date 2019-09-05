@@ -41,6 +41,9 @@ dwv.gui.displayProgress = dwvjq.gui.displayProgress;
 dwv.gui.focusImage = dwvjq.gui.focusImage;
 // refresh
 dwv.gui.refreshElement = dwvjq.gui.refreshElement;
+// set selected
+dwv.gui.setSelected = dwvjq.gui.setSelected;
+
 // plot
 dwv.gui.plot = function (div, data, options)
 {
@@ -178,14 +181,20 @@ dwv.gui.Toolbox = function (app)
         node = app.getElement("openData");
         node.appendChild(toggleSaveState);
     };
-    this.display = function (flag)
-    {
+
+    this.display = function (flag) {
         base.display(flag);
     };
-    this.initialise = function (list)
-    {
-        base.initialise(list);
+    this.initialise = function () {
+        base.initialise();
     };
+    this.setFilterList = function (list) {
+        base.setFilterList(list);
+    }
+    this.setShapeList = function (list) {
+        base.setShapeList(list);
+    }
+
 };
 
 // Window/level
