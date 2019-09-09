@@ -10,8 +10,28 @@ function startApp() {
     // gui setup
     dwvjq.gui.setup();
 
+    // show dwv version
+    dwvjq.gui.appendVersionHtml(dwv.getVersion());
+
     // main application
     var myapp = new dwv.App();
+
+    // listeners
+    myapp.addEventListener("load-progress", function (event) {
+        var percent = Math.ceil((event.loaded / event.total) * 100);
+        dwvjq.gui.displayProgress(percent);
+    });
+    myapp.addEventListener("load-error", function (event) {
+        // hide the progress bar
+        dwvjq.gui.displayProgress(100);
+        // basic alert window
+        alert(event.message);
+    });
+    myapp.addEventListener("load-abort", function (event) {
+        // hide the progress bar
+        dwvjq.gui.displayProgress(100);
+    });
+
     // initialise the application
     var toolList = [
         "Scroll",
@@ -41,28 +61,51 @@ function startApp() {
 
     var options = {
         "containerDivId": "dwv",
-        "gui": ["tool", "load", "help", "undo", "version", "tags", "drawList"],
+        "gui": ["tool", "load", "help", "undo"],
         "loaders": ["File", "Url"],
         "tools": toolList,
         "filters": filterList,
-        "shapes": shapeList,
-        "isMobile": false,
-        "helpResourcesPath": "resources/help"
+        "shapes": shapeList
     };
     if ( dwv.browser.hasInputDirectory() ) {
         options.loaders.splice(1, 0, "Folder");
     }
     myapp.init(options);
 
+    // show help
+    var isMobile = false;
+    dwvjq.gui.appendHelpHtml(
+        myapp.getToolboxController().getToolList(),
+        isMobile,
+        myapp,
+        "resources/help");
+
+    // setup the dropbox loader
+    var dropBoxLoader = new dwv.gui.DropboxLoader(myapp);
+    dropBoxLoader.init();
+
+    // setup the tool gui
     var toolboxGui = new dwv.gui.Toolbox(myapp);
     toolboxGui.setFilterList(filterList);
     toolboxGui.setShapeList(shapeList);
     toolboxGui.setup(toolList);
 
+    // setup the DICOM tags gui
+    var tagsGui = new dwvjq.gui.DicomTags(myapp);
+
+    // setup the draw list gui
+    var drawListGui = new dwvjq.gui.DrawList(myapp);
+    drawListGui.init();
+
     // listen to 'load-end'
     myapp.addEventListener('load-end', function (/*event*/) {
+        // allow loadgin via drag and drop on layer contanier
+        dropBoxLoader.switchToLayerContainer();
+        // initialise and display the toolbox
         toolboxGui.initialise();
         toolboxGui.display(true);
+        // update DICOM tags
+        tagsGui.update(myapp.getTags());
     });
 
     // help

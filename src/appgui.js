@@ -34,11 +34,6 @@ dwv.utils.decodeQuery = dwv.utils.base.decodeQuery;
 dwv.gui.prompt = dwvjq.gui.prompt;
 // get element
 dwv.gui.getElement = dwvjq.gui.getElement;
-
-// Progress
-dwv.gui.displayProgress = dwvjq.gui.displayProgress;
-// Focus
-dwv.gui.focusImage = dwvjq.gui.focusImage;
 // refresh
 dwv.gui.refreshElement = dwvjq.gui.refreshElement;
 // set selected
@@ -61,10 +56,6 @@ dwv.gui.plot = function (div, data, options)
 };
 // Post process table
 dwv.gui.postProcessTable = dwvjq.gui.postProcessTable;
-// Tags table
-dwv.gui.DicomTags = dwvjq.gui.DicomTags;
-// DrawList table
-dwv.gui.DrawList = dwvjq.gui.DrawList;
 
 // Loaders
 dwv.gui.Loadbox = dwvjq.gui.Loadbox;
@@ -190,10 +181,10 @@ dwv.gui.Toolbox = function (app)
     };
     this.setFilterList = function (list) {
         base.setFilterList(list);
-    }
+    };
     this.setShapeList = function (list) {
         base.setShapeList(list);
-    }
+    };
 
 };
 
@@ -219,10 +210,6 @@ dwv.gui.Sobel = dwvjq.gui.Sobel;
 
 // Undo/redo
 dwv.gui.Undo = dwvjq.gui.Undo;
-// Help
-dwv.gui.appendHelpHtml = dwvjq.gui.appendHelpHtml;
-// Version
-dwv.gui.appendVersionHtml = dwvjq.gui.appendVersionHtml;
 
 // special setup
 dwvjq.gui.setup = function () {
