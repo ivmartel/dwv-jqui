@@ -97,6 +97,19 @@ function startApp() {
     var drawListGui = new dwvjq.gui.DrawList(myapp);
     drawListGui.init();
 
+    // colour map
+    var infocm = dwv.gui.getElement("dwv", "infocm");
+    var miniColourMap = null;
+    if (infocm) {
+        miniColourMap = new dwvjq.gui.info.MiniColourMap(infocm, myapp);
+    }
+    // intensities plot
+    var plot = dwv.gui.getElement("dwv", "plot");
+    var plotInfo = null;
+    if (plot) {
+        plotInfo = new dwvjq.gui.info.Plot(plot, myapp);
+    }
+
     // listen to 'load-end'
     myapp.addEventListener('load-end', function (/*event*/) {
         // allow loadgin via drag and drop on layer contanier
@@ -106,7 +119,24 @@ function startApp() {
         toolboxGui.display(true);
         // update DICOM tags
         tagsGui.update(myapp.getTags());
+
+        if (miniColourMap) {
+            miniColourMap.create();
+        }
+        if (plotInfo) {
+            plotInfo.create();
+        }
     });
+
+    if (miniColourMap) {
+        myapp.addEventListener('wl-width-change', miniColourMap.update);
+        myapp.addEventListener('wl-center-change', miniColourMap.update);
+        myapp.addEventListener('colour-change', miniColourMap.update);
+    }
+    if (plotInfo) {
+        myapp.addEventListener('wl-width-change', plotInfo.update);
+        myapp.addEventListener('wl-center-change', plotInfo.update);
+    }
 
     // help
     // TODO Seems accordion only works when at end...
