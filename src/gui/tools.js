@@ -12,12 +12,12 @@ dwvjq.gui.Toolbox = function (app)
 
     var filterList = [];
     this.setFilterList = function (list) {
-        this.filterList = list;
+        filterList = list;
     }
 
     var shapeList = [];
     this.setShapeList = function (list) {
-        this.shapeList = list;
+        shapeList = list;
     }
 
     /**
@@ -69,9 +69,9 @@ dwvjq.gui.Toolbox = function (app)
             }
 
             if (toolClass === "Filter") {
-                toolGui.setup(this.filterList);
+                toolGui.setup(filterList);
             } else if (toolClass === "Draw") {
-                toolGui.setup(this.shapeList);
+                toolGui.setup(shapeList);
             } else {
                 toolGui.setup();
             }
