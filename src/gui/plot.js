@@ -65,6 +65,6 @@ dwvjq.gui.info.Plot = function (div, app)
         }
         // call flot
         $.plot(div, [data], plotOptions);
-    };
+    }
 
 }; // class dwvjq.gui.info.Plot

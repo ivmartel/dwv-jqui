@@ -21,13 +21,13 @@ function startApp() {
         var percent = Math.ceil((event.loaded / event.total) * 100);
         dwvjq.gui.displayProgress(percent);
     });
-    myapp.addEventListener("load-error", function (event) {
+    myapp.addEventListener("load-error", function (/*event*/) {
         // hide the progress bar
         dwvjq.gui.displayProgress(100);
         // basic alert window
         alert(event.message);
     });
-    myapp.addEventListener("load-abort", function (event) {
+    myapp.addEventListener("load-abort", function (/*event*/) {
         // hide the progress bar
         dwvjq.gui.displayProgress(100);
     });

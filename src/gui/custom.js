@@ -27,7 +27,7 @@ dwvjq.gui.focusImage = function ()
  * Refresh a HTML element. Mainly for jquery-mobile.
  * @param {String} element The HTML element to refresh.
  */
-dwvjq.gui.refreshElement = function (element)
+dwvjq.gui.refreshElement = function (/*element*/)
 {
     // does nothing
 };
