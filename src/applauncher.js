@@ -16,12 +16,15 @@ function startApp() {
     // main application
     var myapp = new dwv.App();
 
+    // setup the undo gui
+    var undoGui = new dwvjq.gui.Undo(myapp);
+
     // listeners
     myapp.addEventListener("load-progress", function (event) {
         var percent = Math.ceil((event.loaded / event.total) * 100);
         dwvjq.gui.displayProgress(percent);
     });
-    myapp.addEventListener("load-error", function (/*event*/) {
+    myapp.addEventListener("load-error", function (event) {
         // hide the progress bar
         dwvjq.gui.displayProgress(100);
         // basic alert window
@@ -31,8 +34,22 @@ function startApp() {
         // hide the progress bar
         dwvjq.gui.displayProgress(100);
     });
+    myapp.addEventListener("undo-add", function (event) {
+        undoGui.addCommandToUndoHtml(event.command);
+    });
+    myapp.addEventListener("undo", function (event) {
+        undoGui.enableLastInUndoHtml(false);
+    });
+    myapp.addEventListener("redo", function (event) {
+        undoGui.enableLastInUndoHtml(true);
+    });
 
     // initialise the application
+    var loaderList = [
+        "File",
+        "Url"
+    ];
+
     var toolList = [
         "Scroll",
         "WindowLevel",
@@ -59,10 +76,11 @@ function startApp() {
         "FreeHand"
     ];
 
+    // initialise the application
     var options = {
         "containerDivId": "dwv",
-        "gui": ["tool", "load", "help", "undo"],
-        "loaders": ["File", "Url"],
+        "gui": ["help", "undo"],
+        "loaders": loaderList,
         "tools": toolList,
         "filters": filterList,
         "shapes": shapeList
@@ -71,6 +89,8 @@ function startApp() {
         options.loaders.splice(1, 0, "Folder");
     }
     myapp.init(options);
+
+    undoGui.setup();
 
     // show help
     var isMobile = false;
@@ -83,6 +103,10 @@ function startApp() {
     // setup the dropbox loader
     var dropBoxLoader = new dwv.gui.DropboxLoader(myapp);
     dropBoxLoader.init();
+
+    // setup the loadbox gui
+    var loadboxGui = new dwv.gui.Loadbox(myapp);
+    loadboxGui.setup(loaderList);
 
     // setup the tool gui
     var toolboxGui = new dwv.gui.Toolbox(myapp);
@@ -114,6 +138,8 @@ function startApp() {
     myapp.addEventListener('load-end', function (/*event*/) {
         // allow loadgin via drag and drop on layer contanier
         dropBoxLoader.switchToLayerContainer();
+        // initialise undo gui
+        undoGui.setup();
         // initialise and display the toolbox
         toolboxGui.initialise();
         toolboxGui.display(true);

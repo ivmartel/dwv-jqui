@@ -22,7 +22,7 @@ dwvjq.gui.appendVersionHtml = function (version)
  * @param {Object} app The associated app.
  * @param {String} resourcesPath The path to help resources.
  */
-dwvjq.gui.appendHelpHtml = function(toolList, mobile, app, resourcesPath)
+dwvjq.gui.appendHelpHtml = function (toolList, mobile, app, resourcesPath)
 {
     var actionType = "mouse";
     if( mobile ) {
