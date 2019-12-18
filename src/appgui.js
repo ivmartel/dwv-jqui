@@ -27,29 +27,16 @@ dwv.tool.defaultpresets.CT = {
     "head": {"center": 90, "width": 350}
 };
 
-//decode query
-dwv.utils.decodeQuery = dwv.utils.base.decodeQuery;
+// dwv overrides -------------------------
 
-// Prompt
+// prompt
 dwv.gui.prompt = dwvjq.gui.prompt;
 // get element
 dwv.gui.getElement = dwvjq.gui.getElement;
 // refresh
 dwv.gui.refreshElement = dwvjq.gui.refreshElement;
-// set selected
-dwv.gui.setSelected = dwvjq.gui.setSelected;
 
-// Post process table
-dwv.gui.postProcessTable = dwvjq.gui.postProcessTable;
-
-// Loaders
-dwv.gui.Loadbox = dwvjq.gui.Loadbox;
-// File loader
-dwv.gui.FileLoad = dwvjq.gui.FileLoad;
-// Folder loader
-dwv.gui.FolderLoad = dwvjq.gui.FolderLoad;
-// Url loader
-dwv.gui.UrlLoad = dwvjq.gui.UrlLoad;
+// [end] dwv overrides -------------------------
 
 // tool toggle
 function toggle(dialogId)
@@ -63,7 +50,7 @@ function toggle(dialogId)
 }
 
 // Toolbox
-dwv.gui.Toolbox = function (app)
+dwvjq.gui.ToolboxContainer = function (app, infoController)
 {
     var base = new dwvjq.gui.Toolbox(app);
 
@@ -121,7 +108,11 @@ dwv.gui.Toolbox = function (app)
         var info = document.createElement("button");
         info.appendChild(infoSpan);
         info.title = dwv.i18n("basics.info");
-        info.onclick = app.onToggleInfoLayer;
+        info.onclick = function() {
+            var infoLayer = app.getElement("infoLayer");
+            dwvjq.html.toggleDisplay();
+            infoController.toggleListeners();
+        };
         // help
         var helpSpan = document.createElement("span");
         helpSpan.className = "ui-icon ui-icon-help";
@@ -172,26 +163,6 @@ dwv.gui.Toolbox = function (app)
     };
 
 };
-
-// Window/level
-dwv.gui.WindowLevel = dwvjq.gui.WindowLevel;
-// Draw
-dwv.gui.Draw = dwvjq.gui.Draw;
-// ColourTool
-dwv.gui.ColourTool = dwvjq.gui.ColourTool;
-// ZoomAndPan
-dwv.gui.ZoomAndPan = dwvjq.gui.ZoomAndPan;
-// Scroll
-dwv.gui.Scroll = dwvjq.gui.Scroll;
-// Filter
-dwv.gui.Filter = dwvjq.gui.Filter;
-
-// Filter: threshold
-dwv.gui.Threshold = dwvjq.gui.Threshold;
-// Filter: sharpen
-dwv.gui.Sharpen = dwvjq.gui.Sharpen;
-// Filter: sobel
-dwv.gui.Sobel = dwvjq.gui.Sobel;
 
 // special setup
 dwvjq.gui.setup = function () {

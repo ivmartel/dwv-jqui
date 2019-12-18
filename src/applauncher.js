@@ -105,11 +105,15 @@ function startApp() {
     dropBoxLoader.init();
 
     // setup the loadbox gui
-    var loadboxGui = new dwv.gui.Loadbox(myapp);
+    var loadboxGui = new dwvjq.gui.Loadbox(myapp);
     loadboxGui.setup(loaderList);
 
+    // info layer
+    var infoController = new dwv.gui.info.Controller(myapp, "dwv");
+    infoController.init();
+
     // setup the tool gui
-    var toolboxGui = new dwv.gui.Toolbox(myapp);
+    var toolboxGui = new dwvjq.gui.ToolboxContainer(myapp, infoController);
     toolboxGui.setFilterList(filterList);
     toolboxGui.setShapeList(shapeList);
     toolboxGui.setup(toolList);
@@ -122,17 +126,20 @@ function startApp() {
     drawListGui.init();
 
     // colour map
-    var infocm = dwv.gui.getElement("dwv", "infocm");
+    var infocm = dwvjq.gui.getElement("dwv", "infocm");
     var miniColourMap = null;
     if (infocm) {
         miniColourMap = new dwvjq.gui.info.MiniColourMap(infocm, myapp);
     }
     // intensities plot
-    var plot = dwv.gui.getElement("dwv", "plot");
+    var plot = dwvjq.gui.getElement("dwv", "plot");
     var plotInfo = null;
     if (plot) {
         plotInfo = new dwvjq.gui.info.Plot(plot, myapp);
     }
+
+    // update overlay info on slice load
+    myapp.addEventListener('load-slice', infoController.onLoadSlice);
 
     // listen to 'load-end'
     myapp.addEventListener('load-end', function (/*event*/) {
@@ -163,6 +170,9 @@ function startApp() {
         myapp.addEventListener('wl-width-change', plotInfo.update);
         myapp.addEventListener('wl-center-change', plotInfo.update);
     }
+
+    // possible load from location
+    dwv.utils.loadFromUri(window.location.href, myapp);
 
     // help
     // TODO Seems accordion only works when at end...
