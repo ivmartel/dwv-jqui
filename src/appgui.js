@@ -110,7 +110,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController)
         info.title = dwv.i18n("basics.info");
         info.onclick = function() {
             var infoLayer = app.getElement("infoLayer");
-            dwvjq.html.toggleDisplay();
+            dwvjq.html.toggleDisplay(infoLayer);
             infoController.toggleListeners();
         };
         // help
