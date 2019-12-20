@@ -118,8 +118,8 @@ function startApp() {
     toolboxGui.setShapeList(shapeList);
     toolboxGui.setup(toolList);
 
-    // setup the DICOM tags gui
-    var tagsGui = new dwvjq.gui.DicomTags(myapp);
+    // setup the meta data gui
+    var metaDataGui = new dwvjq.gui.MetaData(myapp);
 
     // setup the draw list gui
     var drawListGui = new dwvjq.gui.DrawList(myapp);
@@ -150,8 +150,10 @@ function startApp() {
         // initialise and display the toolbox
         toolboxGui.initialise();
         toolboxGui.display(true);
-        // update DICOM tags
-        tagsGui.update(myapp.getTags());
+        // update meta data
+        metaDataGui.update(myapp.getMetaData());
+        // update info overlay
+        infoController.onLoadEnd();
 
         if (miniColourMap) {
             miniColourMap.create();

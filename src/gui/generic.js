@@ -112,7 +112,8 @@ dwvjq.gui.MetaData = function (app)
     this.update = function (dataInfo)
     {
         var dataInfoArray = dataInfo;
-        if (dwv.utils.isObject(dataInfo)) {
+        if (dwv.utils.isObject(dataInfo) &&
+            !dwv.utils.isArray(dataInfo)) {
             dataInfoArray = dwv.utils.objectToArray(dataInfo);
         }
 
