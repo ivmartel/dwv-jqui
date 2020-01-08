@@ -101,7 +101,7 @@ function startApp() {
         "resources/help");
 
     // setup the dropbox loader
-    var dropBoxLoader = new dwv.gui.DropboxLoader(myapp);
+    var dropBoxLoader = new dwvjq.gui.DropboxLoader(myapp);
     dropBoxLoader.init();
 
     // setup the loadbox gui
@@ -109,7 +109,7 @@ function startApp() {
     loadboxGui.setup(loaderList);
 
     // info layer
-    var infoController = new dwv.gui.info.Controller(myapp, "dwv");
+    var infoController = new dwvjq.gui.info.Controller(myapp, "dwv");
     infoController.init();
 
     // setup the tool gui
@@ -202,7 +202,7 @@ function launchApp() {
 dwv.i18nOnInitialised( function () {
     // call next once the overlays are loaded
     var onLoaded = function (data) {
-        dwv.gui.info.overlayMaps = data;
+        dwvjq.gui.info.overlayMaps = data;
         i18nInitialised = true;
         launchApp();
     };

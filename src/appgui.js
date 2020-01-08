@@ -1,5 +1,6 @@
 // namespaces
 var dwvjq = dwvjq || {};
+dwvjq.utils = dwvjq.utils || {};
 
 /**
  * Application GUI.
@@ -33,8 +34,6 @@ dwv.tool.defaultpresets.CT = {
 dwv.gui.prompt = dwvjq.gui.prompt;
 // get element
 dwv.gui.getElement = dwvjq.gui.getElement;
-// refresh
-dwv.gui.refreshElement = dwvjq.gui.refreshElement;
 
 // [end] dwv overrides -------------------------
 
@@ -139,7 +138,10 @@ dwvjq.gui.ToolboxContainer = function (app, infoController)
         saveButton.appendChild(document.createTextNode(dwv.i18n("basics.downloadState")));
         // save state link
         var toggleSaveState = document.createElement("a");
-        toggleSaveState.onclick = app.onStateSave;
+        toggleSaveState.onclick = function () {
+            var blob = new Blob([app.getState()], {type: 'application/json'});
+            toggleSaveState.href = window.URL.createObjectURL(blob);
+        };
         toggleSaveState.download = "state.json";
         toggleSaveState.id = "download-state";
         toggleSaveState.className += "download-state";
