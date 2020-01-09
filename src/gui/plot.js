@@ -17,7 +17,7 @@ dwvjq.gui.info.Plot = function (div, app)
     this.create = function() {
         // clean div
         if ( div ) {
-            dwv.html.cleanNode(div);
+            dwvjq.html.cleanNode(div);
         }
         // plot
         plot(div, app.getImage().getHistogram());

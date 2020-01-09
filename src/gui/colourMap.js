@@ -19,7 +19,7 @@ dwvjq.gui.info.MiniColourMap = function ( div, app )
         // clean div
         var elems = div.getElementsByClassName("colour-map-info");
         if ( elems.length !== 0 ) {
-            dwv.html.removeNodes(elems);
+            dwvjq.html.removeNodes(elems);
         }
         // colour map
         var canvas = document.createElement("canvas");
