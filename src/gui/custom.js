@@ -61,7 +61,7 @@ dwvjq.gui.Slider = function (app)
             max: max,
             values: [ min, max ],
             slide: function( event, ui ) {
-                app.onChangeMinMax(
+                app.setFilterMinMax(
                         {'min':ui.values[0], 'max':ui.values[1]});
             }
         });
