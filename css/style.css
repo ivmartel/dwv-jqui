@@ -22,10 +22,10 @@ li button, li input { margin: 0; }
 /* drag&drop */
 .dropBox {}
 .dropBoxBorder {
-    margin: 20px;
+    margin: 20px auto;
     border: 5px dashed #ccc; }
 .dropBoxBorder.hover {
-    margin: 20px;
+    margin: 20px auto;
     border: 5px dashed #cc0; }
 
 /* toolbar */

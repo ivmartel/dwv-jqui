@@ -85,7 +85,7 @@ function startApp() {
         "filters": filterList,
         "shapes": shapeList
     };
-    if ( dwv.browser.hasInputDirectory() ) {
+    if ( dwv.env.hasInputDirectory() ) {
         options.loaders.splice(1, 0, "Folder");
     }
     myapp.init(options);
@@ -212,8 +212,8 @@ dwv.i18nOnInitialised( function () {
     });
 });
 
-// check browser support
-dwv.browser.check();
+// check envrironment support
+dwv.env.check();
 // initialise i18n
 dwv.i18nInitialise("auto", "node_modules/dwv");
 
