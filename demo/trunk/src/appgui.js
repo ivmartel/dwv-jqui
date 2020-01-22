@@ -1,3 +1,7 @@
+// namespaces
+var dwvjq = dwvjq || {};
+dwvjq.utils = dwvjq.utils || {};
+
 /**
  * Application GUI.
  */
@@ -24,65 +28,16 @@ dwv.tool.defaultpresets.CT = {
     "head": {"center": 90, "width": 350}
 };
 
-//decode query
-dwv.utils.decodeQuery = dwv.utils.base.decodeQuery;
+// dwv overrides -------------------------
 
-// Prompt
-dwv.gui.prompt = dwv.gui.base.prompt;
-// Progress
-dwv.gui.displayProgress = function (percent) {
-    // jquery-ui progress bar
-    if( percent <= 100 ) {
-        $("#progressbar").progressbar({ value: percent });
-    }
-};
-// Focus
-dwv.gui.focusImage = dwv.gui.base.focusImage;
+// prompt
+dwv.gui.prompt = dwvjq.gui.prompt;
 // get element
-dwv.gui.getElement = dwv.gui.base.getElement;
-// refresh
-dwv.gui.refreshElement = dwv.gui.base.refreshElement;
-// Slider
-dwv.gui.Slider = function (app)
-{
-    this.append = function ()
-    {
-        // nothing to do
-    };
-    this.initialise = function ()
-    {
-        var min = app.getImage().getDataRange().min;
-        var max = app.getImage().getDataRange().max;
+dwv.gui.getElement = dwvjq.gui.getElement;
 
-        // jquery-ui slider
-        $( ".thresholdLi" ).slider({
-            range: true,
-            min: min,
-            max: max,
-            values: [ min, max ],
-            slide: function( event, ui ) {
-                app.onChangeMinMax(
-                        {'min':ui.values[0], 'max':ui.values[1]});
-            }
-        });
-    };
-};
-// plot
-dwv.gui.plot = function (div, data, options)
-{
-    var plotOptions = {
-        "bars": { "show": true },
-        "grid": { "backgroundcolor": null },
-        "xaxis": { "show": true },
-        "yaxis": { "show": false }
-    };
-    if (typeof options !== "undefined" &&
-        typeof options.markings !== "undefined") {
-        plotOptions.grid.markings = options.markings;
-    }
-    $.plot(div, [ data ], plotOptions);
-};
+// [end] dwv overrides -------------------------
 
+// tool toggle
 function toggle(dialogId)
 {
     if( $(dialogId).dialog('isOpen') ) {
@@ -92,28 +47,13 @@ function toggle(dialogId)
         $(dialogId).dialog('open');
     }
 }
-// post process table
-dwv.gui.postProcessTable = dwv.gui.base.postProcessTable;
-// Tags table
-dwv.gui.DicomTags = dwv.gui.base.DicomTags;
-// DrawList table
-dwv.gui.DrawList = dwv.gui.base.DrawList;
-
-// Loaders
-dwv.gui.Loadbox = dwv.gui.base.Loadbox;
-// File loader
-dwv.gui.FileLoad = dwv.gui.base.FileLoad;
-// File loader
-dwv.gui.FolderLoad = dwv.gui.base.FolderLoad;
-// Url loader
-dwv.gui.UrlLoad =  dwv.gui.base.UrlLoad;
 
 // Toolbox
-dwv.gui.Toolbox = function (app)
+dwvjq.gui.ToolboxContainer = function (app, infoController)
 {
-    var base = new dwv.gui.base.Toolbox(app);
+    var base = new dwvjq.gui.Toolbox(app);
 
-    this.setup = function(list)
+    this.setup = function (list)
     {
         base.setup(list);
 
@@ -167,7 +107,11 @@ dwv.gui.Toolbox = function (app)
         var info = document.createElement("button");
         info.appendChild(infoSpan);
         info.title = dwv.i18n("basics.info");
-        info.onclick = app.onToggleInfoLayer;
+        info.onclick = function() {
+            var infoLayer = app.getElement("infoLayer");
+            dwvjq.html.toggleDisplay(infoLayer);
+            infoController.toggleListeners();
+        };
         // help
         var helpSpan = document.createElement("span");
         helpSpan.className = "ui-icon ui-icon-help";
@@ -194,7 +138,10 @@ dwv.gui.Toolbox = function (app)
         saveButton.appendChild(document.createTextNode(dwv.i18n("basics.downloadState")));
         // save state link
         var toggleSaveState = document.createElement("a");
-        toggleSaveState.onclick = app.onStateSave;
+        toggleSaveState.onclick = function () {
+            var blob = new Blob([app.getState()], {type: 'application/json'});
+            toggleSaveState.href = window.URL.createObjectURL(blob);
+        };
         toggleSaveState.download = "state.json";
         toggleSaveState.id = "download-state";
         toggleSaveState.className += "download-state";
@@ -203,45 +150,24 @@ dwv.gui.Toolbox = function (app)
         node = app.getElement("openData");
         node.appendChild(toggleSaveState);
     };
-    this.display = function (bool)
-    {
-        base.display(bool);
+
+    this.display = function (flag) {
+        base.display(flag);
     };
-    this.initialise = function (list)
-    {
-        base.initialise(list);
+    this.initialise = function () {
+        base.initialise();
     };
+    this.setFilterList = function (list) {
+        base.setFilterList(list);
+    };
+    this.setShapeList = function (list) {
+        base.setShapeList(list);
+    };
+
 };
 
-//Window/level
-dwv.gui.WindowLevel = dwv.gui.base.WindowLevel;
-// Draw
-dwv.gui.Draw = dwv.gui.base.Draw;
-// ColourTool
-dwv.gui.ColourTool = dwv.gui.base.ColourTool;
-// ZoomAndPan
-dwv.gui.ZoomAndPan = dwv.gui.base.ZoomAndPan;
-// Scroll
-dwv.gui.Scroll = dwv.gui.base.Scroll;
-// Filter
-dwv.gui.Filter = dwv.gui.base.Filter;
-
-// Filter: threshold
-dwv.gui.Threshold = dwv.gui.base.Threshold;
-// Filter: sharpen
-dwv.gui.Sharpen = dwv.gui.base.Sharpen;
-// Filter: sobel
-dwv.gui.Sobel = dwv.gui.base.Sobel;
-
-// Undo/redo
-dwv.gui.Undo = dwv.gui.base.Undo;
-// Help
-dwv.gui.appendHelpHtml = dwv.gui.base.appendHelpHtml;
-// Version
-dwv.gui.appendVersionHtml = dwv.gui.base.appendVersionHtml;
-
 // special setup
-dwv.gui.setup = function () {
+dwvjq.gui.setup = function () {
     $(".toggleInfoLayer").button({ icons:
         { primary: "ui-icon-comment" }, text: false,
         appendTo: "#dwv"
