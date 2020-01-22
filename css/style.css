@@ -20,8 +20,13 @@ li button, li input { margin: 0; }
 .drawDiv { position: absolute; pointer-events: none; }
 
 /* drag&drop */
-.dropBox { border: 5px dashed #ccc; margin: 20px; }
-.dropBox.hover { border: 5px dashed #cc0; }
+.dropBox {}
+.dropBoxBorder {
+    margin: 20px auto;
+    border: 5px dashed #ccc; }
+.dropBoxBorder.hover {
+    margin: 20px auto;
+    border: 5px dashed #cc0; }
 
 /* toolbar */
 .toolList ul { padding: 0; }
