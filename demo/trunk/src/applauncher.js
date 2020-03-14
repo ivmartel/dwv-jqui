@@ -13,37 +13,6 @@ function startApp() {
     // show dwv version
     dwvjq.gui.appendVersionHtml(dwv.getVersion());
 
-    // main application
-    var myapp = new dwv.App();
-
-    // setup the undo gui
-    var undoGui = new dwvjq.gui.Undo(myapp);
-
-    // listeners
-    myapp.addEventListener("load-progress", function (event) {
-        var percent = Math.ceil((event.loaded / event.total) * 100);
-        dwvjq.gui.displayProgress(percent);
-    });
-    myapp.addEventListener("load-error", function (event) {
-        // hide the progress bar
-        dwvjq.gui.displayProgress(100);
-        // basic alert window
-        alert(event.message);
-    });
-    myapp.addEventListener("load-abort", function (/*event*/) {
-        // hide the progress bar
-        dwvjq.gui.displayProgress(100);
-    });
-    myapp.addEventListener("undo-add", function (event) {
-        undoGui.addCommandToUndoHtml(event.command);
-    });
-    myapp.addEventListener("undo", function (/*event*/) {
-        undoGui.enableLastInUndoHtml(false);
-    });
-    myapp.addEventListener("redo", function (/*event*/) {
-        undoGui.enableLastInUndoHtml(true);
-    });
-
     // initialise the application
     var loaderList = [
         "File",
@@ -98,9 +67,10 @@ function startApp() {
     if ( dwv.env.hasInputDirectory() ) {
         options.loaders.splice(1, 0, "Folder");
     }
-    myapp.init(options);
 
-    undoGui.setup();
+    // main application
+    var myapp = new dwv.App();
+    myapp.init(options);
 
     // show help
     var isMobile = false;
@@ -109,6 +79,10 @@ function startApp() {
         isMobile,
         myapp,
         "resources/help");
+
+    // setup the undo gui
+    var undoGui = new dwvjq.gui.Undo(myapp);
+    undoGui.setup();
 
     // setup the dropbox loader
     var dropBoxLoader = new dwvjq.gui.DropboxLoader(myapp);
@@ -139,6 +113,7 @@ function startApp() {
     if (infocm) {
         miniColourMap = new dwvjq.gui.info.MiniColourMap(infocm, myapp);
     }
+
     // intensities plot
     var plot = dwvjq.gui.getElement("dwv", "plot");
     var plotInfo = null;
@@ -146,28 +121,125 @@ function startApp() {
         plotInfo = new dwvjq.gui.info.Plot(plot, myapp);
     }
 
-    // update overlay info on slice load
-    myapp.addEventListener('load-slice', infoController.onLoadSlice);
+    // loading time listener
+    var loadTimerListener = function (event) {
+        if (event.type === "load-start") {
+            console.time("load-data");
+        } else if (event.type === "load-end") {
+            console.timeEnd("load-data");
+        }
+    };
+    // abort shortcut listener
+    var abortOnCrtlX = function (event) {
+        if (event.ctrlKey && event.keyCode === 88 ) { // crtl-x
+            console.log("Abort load received from user (crtl-x).");
+            myapp.abortLoad();
+        }
+    };
 
-    // listen to 'load-end'
-    myapp.addEventListener('load-end', function (/*event*/) {
-        // initialise undo gui
-        undoGui.setup();
+    // handle load events
+    var nReceivedLoadItem = null;
+    var nReceivedError = null;
+    var nReceivedAbort = null;
+    myapp.addEventListener("load-start", function (event) {
+        loadTimerListener(event);
+        // reset counts
+        nReceivedLoadItem = 0;
+        nReceivedError = 0;
+        nReceivedAbort = 0;
+        // reset progress bar
+        dwvjq.gui.displayProgress(0);
+        // allow to cancel via crtl-x
+        window.addEventListener("keydown", abortOnCrtlX);
+    });
+    myapp.addEventListener("load-progress", function (event) {
+        var percent = Math.ceil((event.loaded / event.total) * 100);
+        dwvjq.gui.displayProgress(percent);
+    });
+    myapp.addEventListener('load-item', function (event) {
+        ++nReceivedLoadItem;
+        // add new meta data to the info controller
+        if (event.loadtype === "image") {
+            infoController.onLoadItem(event);
+        }
+        // hide drop box (for url load)
+        dropBoxLoader.hideDropboxElement();
         // initialise and display the toolbox
         toolboxGui.initialise();
         toolboxGui.display(true);
-        // update meta data
+    });
+    myapp.addEventListener('load', function (event) {
+        // update info controller
+        if (event.loadtype === "image") {
+            infoController.onLoadEnd();
+        }
+        // initialise undo gui
+        undoGui.setup();
+        // update meta data table
         metaDataGui.update(myapp.getMetaData());
-        // update info overlay
-        infoController.onLoadEnd();
 
+        // create colour map (if present)
         if (miniColourMap) {
             miniColourMap.create();
         }
+        // create plot info (if present)
         if (plotInfo) {
             plotInfo.create();
         }
     });
+    myapp.addEventListener("error", function (event) {
+        console.error("load error", event);
+        console.error(event.error);
+        ++nReceivedError;
+    });
+    myapp.addEventListener("abort", function (/*event*/) {
+        ++nReceivedAbort;
+    });
+    myapp.addEventListener("load-end", function (event) {
+        loadTimerListener(event);
+        // show the drop box if no item were received
+        if (nReceivedLoadItem === 0) {
+            dropBoxLoader.showDropboxElement();
+        }
+        // show alert for errors
+        if (nReceivedError !== 0) {
+            var message = "A load error has ";
+            if (nReceivedError > 1) {
+                message = nReceivedError + " load errors have ";
+            }
+            message += "occured. See log for details.";
+            alert(message);
+        }
+        // console warn for aborts
+        if (nReceivedAbort !== 0) {
+            console.warn("Data load was aborted.");
+        }
+        // stop listening for crtl-x
+        window.removeEventListener("keydown", abortOnCrtlX);
+        // hide the progress bar
+        dwvjq.gui.displayProgress(100);
+    });
+
+    // handle undo/redo
+    myapp.addEventListener("undo-add", function (event) {
+        undoGui.addCommandToUndoHtml(event.command);
+    });
+    myapp.addEventListener("undo", function (/*event*/) {
+        undoGui.enableLastInUndoHtml(false);
+    });
+    myapp.addEventListener("redo", function (/*event*/) {
+        undoGui.enableLastInUndoHtml(true);
+    });
+
+    // handle key events
+    myapp.addEventListener("keydown", function (event) {
+        myapp.defaultOnKeydown(event);
+    });
+
+    // handle window resize
+    // WARNING: will fail if the resize happens and the image is not shown
+    // (for example resizing while viewing the meta data table)
+    window.addEventListener('resize', myapp.onResize);
 
     if (miniColourMap) {
         myapp.addEventListener('wl-width-change', miniColourMap.update);
