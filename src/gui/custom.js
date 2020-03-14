@@ -7,8 +7,7 @@ dwvjq.gui = dwvjq.gui || {};
  * Display a progress value.
  * @param {Number} percent The progress percentage.
  */
-dwvjq.gui.displayProgress = function (percent)
-{
+dwvjq.gui.displayProgress = function (percent) {
     // jquery-ui progress bar
     if( percent <= 100 ) {
         $("#progressbar").progressbar({ value: percent });

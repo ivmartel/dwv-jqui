@@ -20,7 +20,7 @@ dwvjq.gui.info.Controller = function (app, containerDivId)
     var loadEnd = false;
 
     // overlay data
-    var overlayData = {};
+    var overlayData = [];
 
     // flag to know if the info layer is listening on the image.
     var isInfoLayerListening = false;
@@ -51,10 +51,10 @@ dwvjq.gui.info.Controller = function (app, containerDivId)
     };
 
     /**
-     * Handle a new loaded slice event.
-     * @param {Object} event The slice-load event.
+     * Handle a new loaded item event.
+     * @param {Object} event The load-item event.
      */
-    this.onLoadSlice = function (event) {
+    this.onLoadItem = function (event) {
         // reset
         if (loadEnd) {
             overlayData = [];
@@ -64,9 +64,14 @@ dwvjq.gui.info.Controller = function (app, containerDivId)
         // create and store overlay data
         var data = event.data;
         var dataUid = 0;
-        if (typeof data.x00080018 !== "undefined") {
-            // DICOM data case: use the SOP instance UID as id
-            dataUid = data.x00080018.value[0];
+        // check if dicom data (x00020010: transfer syntax)
+        if (typeof data.x00020010 !== "undefined") {
+            if (typeof data.x00080018 !== "undefined") {
+                // SOP instance UID
+                dataUid = dwv.dicom.cleanString(data.x00080018.value[0]);
+            } else {
+                dataUid = overlayData.length;
+            }
             overlayData[dataUid] = dwvjq.gui.info.createOverlayData(
                 new dwv.dicom.DicomElementsWrapper(data));
         } else {

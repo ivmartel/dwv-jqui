@@ -11,10 +11,16 @@ dwvjq.gui = dwvjq.gui || {};
  */
 dwvjq.gui.DropboxLoader = function (app)
 {
+    // closure to self
+    var self = this;
+
     // drop box class name
     var dropboxClassName = "dropBox";
     var borderClassName = "dropBoxBorder";
     var hoverClassName = "hover";
+
+    // size of the drop box
+    var dropBoxSize = 0;
 
     /**
      * Initialise the drop box.
@@ -31,7 +37,7 @@ dwvjq.gui.DropboxLoader = function (app)
         var box = app.getElement(dropboxClassName);
         if (box) {
             var size = app.getLayerContainerSize();
-            var dropBoxSize = 2 * size.height / 3;
+            dropBoxSize = 2 * size.height / 3;
             box.setAttribute(
                 "style",
                 "width:" + dropBoxSize + "px;height:" + dropBoxSize + "px"
@@ -42,7 +48,7 @@ dwvjq.gui.DropboxLoader = function (app)
     /**
      * Hide the drop box gui.
      */
-    function hideDropboxElement() {
+    this.hideDropboxElement = function () {
         var box = app.getElement(dropboxClassName);
         if (box) {
             // remove size
@@ -51,7 +57,23 @@ dwvjq.gui.DropboxLoader = function (app)
             box.className = box.className.replace(" " + borderClassName, "");
             box.className = box.className.replace(" " + hoverClassName, "");
         }
-    }
+    };
+
+    /**
+     * Show the drop box gui.
+     */
+    this.showDropboxElement = function () {
+        var box = app.getElement(dropboxClassName);
+        if (box) {
+            // set size
+            box.setAttribute(
+                "style",
+                "width:" + dropBoxSize + "px;height:" + dropBoxSize + "px"
+            );
+            // add border
+            box.className += " " + borderClassName;
+        }
+    };
 
     /**
      * Handle a drag over.
@@ -97,7 +119,7 @@ dwvjq.gui.DropboxLoader = function (app)
         // load files
         app.loadFiles(event.dataTransfer.files);
         // hide drop box
-        hideDropboxElement();
+        self.hideDropboxElement();
     }
 
 }; // dwvjq.gui.dropboxLoader
