@@ -5,8 +5,8 @@
   "display": "standalone",
   "background_color": "#4eb83e",
   "theme_color": "#3ba22f",
-  "start_url": "/dwv-jqui/demo/stable/index.html",
-  "scope": "/dwv-jqui/demo/stable",
+  "scope": ".",
+  "start_url": "index.html",
   "icons": [
     {
       "src": "resources/icons/icon-16.png",

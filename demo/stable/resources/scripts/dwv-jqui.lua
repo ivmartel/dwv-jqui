@@ -13,7 +13,7 @@
 -- >> viewer = dwv-jqui
 -- 3. copy the dwv-jqui source code from one of its release available at
 -- https://github.com/ivmartel/dwv-jqui/releases
--- in a 'dwv-jqui' folder in the web folder of your web server. 
+-- in a 'dwv-jqui' folder in the web folder of your web server.
 -- It should be accessible via '[server address]/dwv-jqui'.
 --
 -- This script relies on the 'kFactorFile', 'ACRNemaMap' and 'Dictionary'
@@ -147,7 +147,7 @@ function startApp() {
         "helpResourcesPath": "/dwv-jqui/resources/help",
         "skipLoadUrl": true
     };
-    if ( dwv.browser.hasInputDirectory() ) {
+    if ( dwv.env.hasInputDirectory() ) {
         options.loaders.splice(1, 0, "Folder");
     }
     myapp.init(options);
@@ -206,8 +206,8 @@ dwv.i18nOnInitialised( function () {
 ]])
 
 print([[
-// check browser support
-dwv.browser.check();
+// check environment support
+dwv.env.check();
 // initialise i18n
 dwv.i18nInitialise("auto", "/dwv-jqui/node_modules/dwv");
 // DOM ready?

@@ -3,7 +3,7 @@
 // https://developers.google.com/web/fundamentals/primers/service-workers/
 // chrome: chrome://inspect/#service-workers
 
-var CACHE_NAME = 'dwv-jqui-cache_v0.3.0';
+var CACHE_NAME = 'dwv-jqui-cache_v0.4.0';
 var urlsToCache = [
     './',
     './index.html',
@@ -13,6 +13,19 @@ var urlsToCache = [
     './src/applauncher.js',
     './src/appgui.js',
     './src/register-sw.js',
+    './src/gui/custom.js',
+    './src/gui/dropboxLoader.js',
+    './src/gui/filter.js',
+    './src/gui/generic.js',
+    './src/gui/help.js',
+    './src/gui/html.js',
+    './src/gui/infoController.js',
+    './src/gui/infoOverlay.js',
+    './src/gui/loader.js',
+    './src/gui/tools.js',
+    './src/gui/undo.js',
+    './src/utils/browser.js',
+    './src/utils/modernizr.js',
     // images
     './resources/icons/icon-16.png',
     './resources/icons/icon-32.png',
