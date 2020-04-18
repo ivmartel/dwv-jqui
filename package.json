@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "dwv": "0.27.0",
-    "jquery": "~3.4.1"
+    "jquery": "~3.5.0"
   },
   "devDependencies": {
     "grunt": "~1.1.0",
