@@ -23,12 +23,11 @@ var dwvjq = dwvjq || {};
  * a global `Modernizr` object, and as classes on the `<html>` element. This
  * information allows you to progressively enhance your pages with a granular level
  * of control over the experience.
-*/
+ */
 
 dwvjq.ModernizrInit = function (window, document, undefined) {
-// ;(function(window, document, undefined){
+  // ;(function(window, document, undefined){
   var tests = [];
-
 
   /**
    *
@@ -45,17 +44,17 @@ dwvjq.ModernizrInit = function (window, document, undefined) {
     // Any settings that don't work as separate modules
     // can go in here as configuration.
     _config: {
-      'classPrefix': '',
-      'enableClasses': true,
-      'enableJSClass': true,
-      'usePrefixes': true
+      classPrefix: '',
+      enableClasses: true,
+      enableJSClass: true,
+      usePrefixes: true
     },
 
     // Queue of tests
     _q: [],
 
     // Stub these for people who are listening
-    on: function(test, cb) {
+    on: function (test, cb) {
       // I don't really think people should do this, but we can
       // safe guard it a bit.
       // -- NOTE:: this gets WAY overridden in src/addTest for actual async tests.
@@ -63,32 +62,29 @@ dwvjq.ModernizrInit = function (window, document, undefined) {
       // but the code to *disallow* sync tests in the real version of this
       // function is actually larger than this.
       var self = this;
-      setTimeout(function() {
+      setTimeout(function () {
         cb(self[test]);
       }, 0);
     },
 
-    addTest: function(name, fn, options) {
-      tests.push({name: name, fn: fn, options: options});
+    addTest: function (name, fn, options) {
+      tests.push({ name: name, fn: fn, options: options });
     },
 
-    addAsyncTest: function(fn) {
-      tests.push({name: null, fn: fn});
+    addAsyncTest: function (fn) {
+      tests.push({ name: null, fn: fn });
     }
   };
 
-
-
   // Fake some of Object.create so we can force non test results to be non "own" properties.
-  var Modernizr = function() {};
+  var Modernizr = function () {};
   Modernizr.prototype = ModernizrProto;
 
   // Leak modernizr globally when you `require` it rather than force it here.
   // Overwrite name so constructor name is nicer :D
   Modernizr = new Modernizr();
 
-
-/*!
+  /*!
 {
   "name": "DataView",
   "property": "dataview",
@@ -101,13 +97,16 @@ dwvjq.ModernizrInit = function (window, document, undefined) {
   "polyfills": ["jdataview"]
 }
 !*/
-/* DOC
+  /* DOC
 Detects support for the DataView interface for reading data from an ArrayBuffer as part of the Typed Array spec.
 */
 
-  Modernizr.addTest('dataview', (typeof DataView !== 'undefined' && 'getFloat64' in DataView.prototype));
+  Modernizr.addTest(
+    'dataview',
+    typeof DataView !== 'undefined' && 'getFloat64' in DataView.prototype
+  );
 
-/*!
+  /*!
 {
   "name": "Typed arrays",
   "property": "typedarrays",
@@ -124,7 +123,7 @@ Detects support for the DataView interface for reading data from an ArrayBuffer 
   "polyfills": ["joshuabell-polyfill"]
 }
 !*/
-/* DOC
+  /* DOC
 Detects support for native binary data manipulation via Typed Arrays in JavaScript.
 
 Does not check for DataView support; use `Modernizr.dataview` for that.
@@ -143,7 +142,7 @@ Does not check for DataView support; use `Modernizr.dataview` for that.
 
   Modernizr.addTest('typedarrays', 'ArrayBuffer' in window);
 
-/*!
+  /*!
 {
   "name": "File API",
   "property": "filereader",
@@ -157,7 +156,7 @@ Does not check for DataView support; use `Modernizr.dataview` for that.
   "knownBugs": ["Will fail in Safari 5 due to its lack of support for the standards defined FileReader object"]
 }
 !*/
-/* DOC
+  /* DOC
 `filereader` tests for the File API specification
 
 Tests for objects specific to the File API W3C specification without
@@ -165,9 +164,12 @@ being redundant (don't bother testing for Blob since it is assumed
 to be the File object's prototype.)
 */
 
-  Modernizr.addTest('filereader', !!(window.File && window.FileList && window.FileReader));
+  Modernizr.addTest(
+    'filereader',
+    !!(window.File && window.FileList && window.FileReader)
+  );
 
-/*!
+  /*!
 {
   "name": "XHR responseType",
   "property": "xhrresponsetype",
@@ -178,20 +180,23 @@ to be the File object's prototype.)
   }]
 }
 !*/
-/* DOC
+  /* DOC
 Tests for XMLHttpRequest xhr.responseType.
 */
 
-  Modernizr.addTest('xhrresponsetype', (function() {
-    if (typeof XMLHttpRequest == 'undefined') {
-      return false;
-    }
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', '/', true);
-    return 'response' in xhr;
-  }()));
+  Modernizr.addTest(
+    'xhrresponsetype',
+    (function () {
+      if (typeof XMLHttpRequest == 'undefined') {
+        return false;
+      }
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', '/', true);
+      return 'response' in xhr;
+    })()
+  );
 
-/*!
+  /*!
 {
   "name": "URL parser",
   "property": "urlparser",
@@ -204,11 +209,11 @@ Tests for XMLHttpRequest xhr.responseType.
   "tags": ["url"]
 }
 !*/
-/* DOC
+  /* DOC
 Check if browser implements the URL constructor for parsing URLs.
 */
 
-  Modernizr.addTest('urlparser', function() {
+  Modernizr.addTest('urlparser', function () {
     var url;
     try {
       // have to actually try use it, because Safari defines a dud constructor
@@ -219,7 +224,7 @@ Check if browser implements the URL constructor for parsing URLs.
     }
   });
 
-/*!
+  /*!
 {
   "authors": ["Cătălin Mariș"],
   "name": "URLSearchParams API",
@@ -238,16 +243,13 @@ Check if browser implements the URL constructor for parsing URLs.
 }
 !*/
 
-/* DOC
+  /* DOC
 Detects support for an API that provides utility methods for working with the query string of a URL.
 */
 
-
   Modernizr.addTest('urlsearchparams', 'URLSearchParams' in window);
 
-
   var classes = [];
-
 
   /**
    * is returns a boolean if the typeof an obj is exactly type.
@@ -262,8 +264,6 @@ Detects support for an API that provides utility methods for working with the qu
   function is(obj, type) {
     return typeof obj === type;
   }
-  ;
-
   /**
    * Run through all tests and detect their support in the current UA.
    *
@@ -293,17 +293,26 @@ Detects support for an API that provides utility methods for working with the qu
         if (feature.name) {
           featureNames.push(feature.name.toLowerCase());
 
-          if (feature.options && feature.options.aliases && feature.options.aliases.length) {
+          if (
+            feature.options &&
+            feature.options.aliases &&
+            feature.options.aliases.length
+          ) {
             // Add all the aliases into the names list
-            for (aliasIdx = 0; aliasIdx < feature.options.aliases.length; aliasIdx++) {
-              featureNames.push(feature.options.aliases[aliasIdx].toLowerCase());
+            for (
+              aliasIdx = 0;
+              aliasIdx < feature.options.aliases.length;
+              aliasIdx++
+            ) {
+              featureNames.push(
+                feature.options.aliases[aliasIdx].toLowerCase()
+              );
             }
           }
         }
 
         // Run the test, or use the raw value if it's not a function
         result = is(feature.fn, 'function') ? feature.fn() : feature.fn;
-
 
         // Set each of the names on the Modernizr object
         for (nameIdx = 0; nameIdx < featureNames.length; nameIdx++) {
@@ -320,8 +329,13 @@ Detects support for an API that provides utility methods for working with the qu
             Modernizr[featureNameSplit[0]] = result;
           } else {
             // cast to a Boolean, if not one already
-            if (Modernizr[featureNameSplit[0]] && !(Modernizr[featureNameSplit[0]] instanceof Boolean)) {
-              Modernizr[featureNameSplit[0]] = new Boolean(Modernizr[featureNameSplit[0]]);
+            if (
+              Modernizr[featureNameSplit[0]] &&
+              !(Modernizr[featureNameSplit[0]] instanceof Boolean)
+            ) {
+              Modernizr[featureNameSplit[0]] = new Boolean(
+                Modernizr[featureNameSplit[0]]
+              );
             }
 
             Modernizr[featureNameSplit[0]][featureNameSplit[1]] = result;
@@ -332,8 +346,6 @@ Detects support for an API that provides utility methods for working with the qu
       }
     }
   }
-  ;
-
   /**
    * docElement is a convenience wrapper to grab the root element of the document
    *
@@ -342,7 +354,6 @@ Detects support for an API that provides utility methods for working with the qu
    */
 
   var docElement = document.documentElement;
-
 
   /**
    * http://mathiasbynens.be/notes/xhr-responsetype-json#comment-4
@@ -355,7 +366,7 @@ Detects support for an API that provides utility methods for working with the qu
    */
 
   /* istanbul ignore next */
-  var testXhrType = function(type) {
+  var testXhrType = function (type) {
     if (typeof XMLHttpRequest == 'undefined') {
       return false;
     }
@@ -369,8 +380,7 @@ Detects support for an API that provides utility methods for working with the qu
     return 'response' in xhr && xhr.responseType == type;
   };
 
-
-/*!
+  /*!
 {
   "name": "XHR responseType='arraybuffer'",
   "property": "xhrresponsetypearraybuffer",
@@ -381,13 +391,13 @@ Detects support for an API that provides utility methods for working with the qu
   }]
 }
 !*/
-/* DOC
+  /* DOC
 Tests for XMLHttpRequest xhr.responseType='arraybuffer'.
 */
 
   Modernizr.addTest('xhrresponsetypearraybuffer', testXhrType('arraybuffer'));
 
-/*!
+  /*!
 {
   "name": "XHR responseType='json'",
   "property": "xhrresponsetypejson",
@@ -401,13 +411,13 @@ Tests for XMLHttpRequest xhr.responseType='arraybuffer'.
   }]
 }
 !*/
-/* DOC
+  /* DOC
 Tests for XMLHttpRequest xhr.responseType='json'.
 */
 
   Modernizr.addTest('xhrresponsetypejson', testXhrType('json'));
 
-/*!
+  /*!
 {
   "name": "XHR responseType='text'",
   "property": "xhrresponsetypetext",
@@ -418,12 +428,11 @@ Tests for XMLHttpRequest xhr.responseType='json'.
   }]
 }
 !*/
-/* DOC
+  /* DOC
 Tests for XMLHttpRequest xhr.responseType='text'.
 */
 
   Modernizr.addTest('xhrresponsetypetext', testXhrType('text'));
-
 
   /**
    * A convenience helper to check if the document we are running in is an SVG document
@@ -433,7 +442,6 @@ Tests for XMLHttpRequest xhr.responseType='text'.
    */
 
   var isSVG = docElement.nodeName.toLowerCase() === 'svg';
-
 
   /**
    * createElement is a convenience wrapper around document.createElement. Since we
@@ -452,13 +460,15 @@ Tests for XMLHttpRequest xhr.responseType='text'.
       // For this reason, we cannot call apply() as Object is not a Function.
       return document.createElement(arguments[0]);
     } else if (isSVG) {
-      return document.createElementNS.call(document, 'http://www.w3.org/2000/svg', arguments[0]);
+      return document.createElementNS.call(
+        document,
+        'http://www.w3.org/2000/svg',
+        arguments[0]
+      );
     } else {
       return document.createElement.apply(document, arguments);
     }
   }
-
-  ;
 
   /**
    * since we have a fairly large number of input tests that don't mutate the input
@@ -470,7 +480,7 @@ Tests for XMLHttpRequest xhr.responseType='text'.
    */
   var inputElem = createElement('input');
 
-/*!
+  /*!
 {
   "name": "Form input types",
   "property": "inputtypes",
@@ -493,7 +503,7 @@ Tests for XMLHttpRequest xhr.responseType='text'.
   ]
 }
 !*/
-/* DOC
+  /* DOC
 Detects support for HTML5 form input types and exposes Boolean subproperties with the results:
 
 ```javascript
@@ -519,10 +529,12 @@ Modernizr.inputtypes.week
   //   containing each input type with its corresponding true/false value
 
   // Big thanks to @miketaylr for the html5 forms expertise. miketaylr.com/
-  var inputtypes = 'search tel url email datetime date month week time datetime-local number range color'.split(' ');
+  var inputtypes = 'search tel url email datetime date month week time datetime-local number range color'.split(
+    ' '
+  );
   var inputs = {};
 
-  Modernizr.inputtypes = (function(props) {
+  Modernizr.inputtypes = (function (props) {
     var len = props.length;
     var smile = '1)';
     var inputElemType;
@@ -530,54 +542,51 @@ Modernizr.inputtypes.week
     var bool;
 
     for (var i = 0; i < len; i++) {
-
-      inputElem.setAttribute('type', inputElemType = props[i]);
+      inputElem.setAttribute('type', (inputElemType = props[i]));
       bool = inputElem.type !== 'text' && 'style' in inputElem;
 
       // We first check to see if the type we give it sticks..
       // If the type does, we feed it a textual value, which shouldn't be valid.
       // If the value doesn't stick, we know there's input sanitization which infers a custom UI
       if (bool) {
-
-        inputElem.value         = smile;
+        inputElem.value = smile;
         inputElem.style.cssText = 'position:absolute;visibility:hidden;';
 
-        if (/^range$/.test(inputElemType) && inputElem.style.WebkitAppearance !== undefined) {
-
+        if (
+          /^range$/.test(inputElemType) &&
+          inputElem.style.WebkitAppearance !== undefined
+        ) {
           docElement.appendChild(inputElem);
           defaultView = document.defaultView;
 
           // Safari 2-4 allows the smiley as a value, despite making a slider
-          bool =  defaultView.getComputedStyle &&
-            defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' &&
+          bool =
+            defaultView.getComputedStyle &&
+            defaultView.getComputedStyle(inputElem, null).WebkitAppearance !==
+              'textfield' &&
             // Mobile android web browser has false positive, so must
             // check the height to see if the widget is actually there.
-            (inputElem.offsetHeight !== 0);
+            inputElem.offsetHeight !== 0;
 
           docElement.removeChild(inputElem);
-
         } else if (/^(search|tel)$/.test(inputElemType)) {
           // Spec doesn't define any special parsing or detectable UI
           //   behaviors so we pass these through as true
-
           // Interestingly, opera fails the earlier test, so it doesn't
           //  even make it here.
-
         } else if (/^(url|email)$/.test(inputElemType)) {
           // Real url and email support comes with prebaked validation.
           bool = inputElem.checkValidity && inputElem.checkValidity() === false;
-
         } else {
           // If the upgraded input compontent rejects the :) text, we got a winner
           bool = inputElem.value != smile;
         }
       }
 
-      inputs[ props[i] ] = !!bool;
+      inputs[props[i]] = !!bool;
     }
     return inputs;
   })(inputtypes);
-
 
   /**
    * If the browsers follow the spec, then they would expose vendor-specific styles as:
@@ -597,7 +606,6 @@ Modernizr.inputtypes.week
 
   var omPrefixes = 'Moz O ms Webkit';
 
-
   /**
    * List of JavaScript DOM values used for tests
    *
@@ -616,10 +624,12 @@ Modernizr.inputtypes.week
    * ```
    */
 
-  var domPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.toLowerCase().split(' ') : []);
+  var domPrefixes = ModernizrProto._config.usePrefixes
+    ? omPrefixes.toLowerCase().split(' ')
+    : [];
   ModernizrProto._domPrefixes = domPrefixes;
 
-/*!
+  /*!
 {
   "name": "input[directory] Attribute",
   "property": "directory",
@@ -627,14 +637,15 @@ Modernizr.inputtypes.week
   "tags": ["file", "input", "attribute"]
 }
 !*/
-/* DOC
+  /* DOC
 When used on an `<input type="file">`, the `directory` attribute instructs
 the user agent to present a directory selection dialog instead of the usual
 file selection dialog.
 */
 
-  Modernizr.addTest('fileinputdirectory', function() {
-    var elem = createElement('input'), dir = 'directory';
+  Modernizr.addTest('fileinputdirectory', function () {
+    var elem = createElement('input'),
+      dir = 'directory';
     elem.type = 'file';
     if (dir in elem) {
       return true;
@@ -647,7 +658,6 @@ file selection dialog.
     }
     return false;
   });
-
 
   // Run each test
   testRunner();
@@ -664,8 +674,5 @@ file selection dialog.
   // window.Modernizr = Modernizr;
   dwvjq.Modernizr = Modernizr;
 
-
-;
-
-// })(window, document);
+  // })(window, document);
 };
