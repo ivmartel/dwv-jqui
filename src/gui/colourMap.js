@@ -31,7 +31,8 @@ dwvjq.gui.info.MiniColourMap = function (div, app) {
   /**
    * Update the mini colour map info div.
    * @param {Object} event The windowing change event containing the new values.
-   * Warning: expects the mini colour map div to exist (use after createMiniColourMap).
+   * Warning: expects the mini colour map div to exist
+   *  (use after createMiniColourMap).
    */
   this.update = function (event) {
     var windowCenter = event.wc;

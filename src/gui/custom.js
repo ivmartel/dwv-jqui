@@ -10,7 +10,7 @@ dwvjq.gui = dwvjq.gui || {};
 dwvjq.gui.displayProgress = function (percent) {
   // jquery-ui progress bar
   if (percent <= 100) {
-    $('#progressbar').progressbar({ value: percent });
+    $('#progressbar').progressbar({value: percent});
   }
 };
 
@@ -55,7 +55,7 @@ dwvjq.gui.Slider = function (app) {
       max: max,
       values: [min, max],
       slide: function (event, ui) {
-        app.setFilterMinMax({ min: ui.values[0], max: ui.values[1] });
+        app.setFilterMinMax({min: ui.values[0], max: ui.values[1]});
       }
     });
   };

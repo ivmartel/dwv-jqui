@@ -37,12 +37,12 @@ dwvjq.gui.info.Plot = function (div, app) {
     var max = center + half;
 
     var markings = [
-      { color: '#faa', lineWidth: 1, xaxis: { from: min, to: min } },
-      { color: '#aaf', lineWidth: 1, xaxis: { from: max, to: max } }
+      {color: '#faa', lineWidth: 1, xaxis: {from: min, to: min}},
+      {color: '#aaf', lineWidth: 1, xaxis: {from: max, to: max}}
     ];
 
     // plot
-    plot(div, app.getImage().getHistogram(), { markings: markings });
+    plot(div, app.getImage().getHistogram(), {markings: markings});
   };
 
   /**
@@ -53,10 +53,10 @@ dwvjq.gui.info.Plot = function (div, app) {
    */
   function plot(div, data, options) {
     var plotOptions = {
-      bars: { show: true },
-      grid: { backgroundcolor: null },
-      xaxis: { show: true },
-      yaxis: { show: false }
+      bars: {show: true},
+      grid: {backgroundcolor: null},
+      xaxis: {show: true},
+      yaxis: {show: false}
     };
     if (
       typeof options !== 'undefined' &&
