@@ -21,11 +21,11 @@ dwv.tool.colourMaps = {
 dwv.tool.defaultpresets = {};
 // Default window level presets for CT.
 dwv.tool.defaultpresets.CT = {
-  mediastinum: { center: 40, width: 400 },
-  lung: { center: -500, width: 1500 },
-  bone: { center: 500, width: 2000 },
-  brain: { center: 40, width: 80 },
-  head: { center: 90, width: 350 }
+  mediastinum: {center: 40, width: 400},
+  lung: {center: -500, width: 1500},
+  bone: {center: 500, width: 2000},
+  brain: {center: 40, width: 80},
+  head: {center: 90, width: 350}
 };
 
 // dwv overrides -------------------------
@@ -151,7 +151,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     // save state link
     var toggleSaveState = document.createElement('a');
     toggleSaveState.onclick = function () {
-      var blob = new Blob([app.getState()], { type: 'application/json' });
+      var blob = new Blob([app.getState()], {type: 'application/json'});
       toggleSaveState.href = window.URL.createObjectURL(blob);
     };
     toggleSaveState.download = 'state.json';
@@ -174,39 +174,39 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
 // special setup
 dwvjq.gui.setup = function () {
   $('.toggleInfoLayer').button({
-    icons: { primary: 'ui-icon-comment' },
+    icons: {primary: 'ui-icon-comment'},
     text: false,
     appendTo: '#dwv'
   });
   // create dialogs
   $('.openData').dialog({
-    position: { my: 'left top', at: 'left top', of: '#pageMain' },
+    position: {my: 'left top', at: 'left top', of: '#pageMain'},
     appendTo: '#dwv'
   });
   $('.toolList').dialog({
-    position: { my: 'left top+180', at: 'left top', of: '#pageMain' },
+    position: {my: 'left top+180', at: 'left top', of: '#pageMain'},
     appendTo: '#dwv'
   });
   $('.history').dialog({
-    position: { my: 'left top+350', at: 'left top', of: '#pageMain' },
+    position: {my: 'left top+350', at: 'left top', of: '#pageMain'},
     appendTo: '#dwv'
   });
   $('.tags').dialog({
-    position: { my: 'right top', at: 'right top', of: '#pageMain' },
+    position: {my: 'right top', at: 'right top', of: '#pageMain'},
     autoOpen: false,
     width: 500,
     height: 590,
     appendTo: '#dwv'
   });
   $('.drawList').dialog({
-    position: { my: 'right top', at: 'right top', of: '#pageMain' },
+    position: {my: 'right top', at: 'right top', of: '#pageMain'},
     autoOpen: false,
     width: 500,
     height: 590,
     appendTo: '#dwv'
   });
   $('.help').dialog({
-    position: { my: 'right top', at: 'right top', of: '#pageMain' },
+    position: {my: 'right top', at: 'right top', of: '#pageMain'},
     autoOpen: false,
     width: 500,
     height: 590,
@@ -215,13 +215,13 @@ dwvjq.gui.setup = function () {
 
   // image dialog
   $('.layerDialog').dialog({
-    position: { my: 'left+320 top', at: 'left top', of: '#pageMain' },
+    position: {my: 'left+320 top', at: 'left top', of: '#pageMain'},
     appendTo: '#dwv'
   });
   // default size
   // width: http://api.jqueryui.com/dialog/#option-width
   // "auto" is not documented but has an effect...
-  $('.layerDialog').dialog({ width: 'auto', resizable: true });
+  $('.layerDialog').dialog({width: 'auto', resizable: true});
   // Resizable but keep aspect ratio
   // TODO it seems to add a border that bothers getting the cursor position...
   //$("#layerContainer").resizable({ aspectRatio: true });
