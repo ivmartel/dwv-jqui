@@ -13,9 +13,7 @@ function startApp() {
   // show dwv version
   dwvjq.gui.appendVersionHtml(dwv.getVersion());
 
-  // initialise the application
-  var loaderList = ['File', 'Url'];
-
+  // application options
   var filterList = ['Threshold', 'Sharpen', 'Sobel'];
 
   var shapeList = [
@@ -53,13 +51,8 @@ function startApp() {
   // initialise the application
   var options = {
     containerDivId: 'dwv',
-    gui: ['help', 'undo'],
-    loaders: loaderList,
     tools: toolList
   };
-  if (dwv.env.hasInputDirectory()) {
-    options.loaders.splice(1, 0, 'Folder');
-  }
 
   // main application
   var myapp = new dwv.App();
@@ -84,6 +77,10 @@ function startApp() {
 
   // setup the loadbox gui
   var loadboxGui = new dwvjq.gui.Loadbox(myapp);
+  var loaderList = ['File', 'Url'];
+  if (dwv.env.hasInputDirectory()) {
+    loaderList.splice(1, 0, 'Folder');
+  }
   loadboxGui.setup(loaderList);
 
   // info layer
@@ -139,6 +136,10 @@ function startApp() {
     dropBoxLoader.showDropbox(false);
     // reset progress bar
     dwvjq.gui.displayProgress(0);
+    // update info controller
+    if (event.loadtype === 'image') {
+      infoController.onLoadStart();
+    }
     // allow to cancel via crtl-x
     window.addEventListener('keydown', abortOnCrtlX);
   });
@@ -161,11 +162,7 @@ function startApp() {
       toolboxGui.display(true);
     }
   });
-  myapp.addEventListener('load', function (event) {
-    // update info controller
-    if (event.loadtype === 'image') {
-      infoController.onLoadEnd();
-    }
+  myapp.addEventListener('load', function (/*event*/) {
     // initialise undo gui
     undoGui.setup();
     // update meta data table
