@@ -138,7 +138,7 @@ dwvjq.gui.info.Controller = function (app, containerDivId) {
     if (isInfoLayerListening) {
       for (n = 0; n < overlayGuis.length; ++n) {
         // default slice change for tags
-        app.removeEventListener('slice-change', overlayGuis[n].update);
+        app.removeEventListener('slicechange', overlayGuis[n].update);
         // from config
         for (e = 0; e < events.length; ++e) {
           app.removeEventListener(events[e], overlayGuis[n].update);
@@ -147,7 +147,7 @@ dwvjq.gui.info.Controller = function (app, containerDivId) {
     } else {
       for (n = 0; n < overlayGuis.length; ++n) {
         // default slice change for tags
-        app.addEventListener('slice-change', overlayGuis[n].update);
+        app.addEventListener('slicechange', overlayGuis[n].update);
         // from config
         for (e = 0; e < events.length; ++e) {
           app.addEventListener(events[e], overlayGuis[n].update);
