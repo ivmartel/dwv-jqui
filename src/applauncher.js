@@ -35,18 +35,18 @@ function startApp() {
     Draw: {
       options: shapeList,
       type: 'factory',
-      events: ['draw-create', 'draw-change', 'draw-move', 'draw-delete']
+      events: ['drawcreate', 'drawchange', 'drawmove', 'drawdelete']
     },
     Livewire: {
-      events: ['draw-create', 'draw-change', 'draw-move', 'draw-delete']
+      events: ['drawcreate', 'drawchange', 'drawmove', 'drawdelete']
     },
     Filter: {
       options: filterList,
       type: 'instance',
-      events: ['filter-run', 'filter-undo']
+      events: ['filterrun', 'filterundo']
     },
     Floodfill: {
-      events: ['draw-create', 'draw-change', 'draw-move', 'draw-delete']
+      events: ['drawcreate', 'drawchange', 'drawmove', 'drawdelete']
     }
   };
 
@@ -115,14 +115,6 @@ function startApp() {
     plotInfo = new dwvjq.gui.info.Plot(plot, myapp);
   }
 
-  // loading time listener
-  var loadTimerListener = function (event) {
-    if (event.type === 'load-start') {
-      console.time('load-data');
-    } else if (event.type === 'load-end') {
-      console.timeEnd('load-data');
-    }
-  };
   // abort shortcut listener
   var abortOnCrtlX = function (event) {
     if (event.ctrlKey && event.keyCode === 88) {
@@ -136,12 +128,13 @@ function startApp() {
   var nLoadItem = null;
   var nReceivedError = null;
   var nReceivedAbort = null;
-  myapp.addEventListener('load-start', function (event) {
-    loadTimerListener(event);
+  var isFirstRender = null;
+  myapp.addEventListener('loadstart', function (/*event*/) {
     // reset counts
     nLoadItem = 0;
     nReceivedError = 0;
     nReceivedAbort = 0;
+    isFirstRender = true;
     // hide drop box
     dropBoxLoader.showDropbox(false);
     // reset progress bar
@@ -149,19 +142,24 @@ function startApp() {
     // allow to cancel via crtl-x
     window.addEventListener('keydown', abortOnCrtlX);
   });
-  myapp.addEventListener('load-progress', function (event) {
+  myapp.addEventListener('loadprogress', function (event) {
     var percent = Math.ceil((event.loaded / event.total) * 100);
     dwvjq.gui.displayProgress(percent);
   });
-  myapp.addEventListener('load-item', function (event) {
+  myapp.addEventListener('loaditem', function (event) {
     ++nLoadItem;
     // add new meta data to the info controller
     if (event.loadtype === 'image') {
       infoController.onLoadItem(event);
     }
-    // initialise and display the toolbox
-    toolboxGui.initialise();
-    toolboxGui.display(true);
+  });
+  myapp.addEventListener('renderend', function (/*event*/) {
+    if (isFirstRender) {
+      isFirstRender = false;
+      // initialise and display the toolbox on first render
+      toolboxGui.initialise();
+      toolboxGui.display(true);
+    }
   });
   myapp.addEventListener('load', function (event) {
     // update info controller
@@ -189,8 +187,7 @@ function startApp() {
   myapp.addEventListener('abort', function (/*event*/) {
     ++nReceivedAbort;
   });
-  myapp.addEventListener('load-end', function (event) {
-    loadTimerListener(event);
+  myapp.addEventListener('loadend', function (/*event*/) {
     // show alert for errors
     if (nReceivedError) {
       var message = 'A load error has ';
@@ -216,7 +213,7 @@ function startApp() {
   });
 
   // handle undo/redo
-  myapp.addEventListener('undo-add', function (event) {
+  myapp.addEventListener('undoadd', function (event) {
     undoGui.addCommandToUndoHtml(event.command);
   });
   myapp.addEventListener('undo', function (/*event*/) {
@@ -237,13 +234,13 @@ function startApp() {
   window.addEventListener('resize', myapp.onResize);
 
   if (miniColourMap) {
-    myapp.addEventListener('wl-width-change', miniColourMap.update);
-    myapp.addEventListener('wl-center-change', miniColourMap.update);
-    myapp.addEventListener('colour-change', miniColourMap.update);
+    myapp.addEventListener('wlwidthchange', miniColourMap.update);
+    myapp.addEventListener('wlcenterchange', miniColourMap.update);
+    myapp.addEventListener('colourchange', miniColourMap.update);
   }
   if (plotInfo) {
-    myapp.addEventListener('wl-width-change', plotInfo.update);
-    myapp.addEventListener('wl-center-change', plotInfo.update);
+    myapp.addEventListener('wlwidthchange', plotInfo.update);
+    myapp.addEventListener('wlcenterchange', plotInfo.update);
   }
 
   // possible load from location

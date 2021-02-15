@@ -81,7 +81,7 @@ var urlsToCache = [
     'i18nextBrowserLanguageDetector.min.js',
   './node_modules/jszip/dist/jszip.min.js',
   './node_modules/konva/konva.min.js',
-  './node_modules/magic-wand-js/js/magic-wand-min.js',
+  './node_modules/magic-wand-tool/dist/magic-wand.min.js',
   // js: viewer
   './node_modules/jquery/dist/jquery.min.js',
   './ext/jquery-ui/jquery-ui-1.12.1.min.js',
