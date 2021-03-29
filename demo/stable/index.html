@@ -24,7 +24,7 @@
 <script type="text/javascript" src="node_modules/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js"></script>
 <script type="text/javascript" src="node_modules/jszip/dist/jszip.min.js"></script>
 <script type="text/javascript" src="node_modules/konva/konva.min.js"></script>
-<script type="text/javascript" src="node_modules/magic-wand-js/js/magic-wand-min.js"></script>
+<script type="text/javascript" src="node_modules/magic-wand-tool/dist/magic-wand.min.js"></script>
 <!-- Third party (viewer) -->
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="ext/jquery-ui/jquery-ui-1.12.1.min.js"></script>
@@ -105,9 +105,8 @@
 <!-- Layer Container -->
 <div class="layerDialog" title="Image">
   <div class="layerContainer">
-    <div class="dropBox dropBoxBorder"></div>
+    <div class="dropBox"></div>
     <canvas class="imageLayer">Only for HTML5 compatible browsers...</canvas>
-    <div class="drawDiv"></div>
     <div class="infoLayer">
       <div class="infotl"></div>
       <div class="infotc"></div>
@@ -119,6 +118,7 @@
       <div class="infobr" style="bottom: 64px;"></div>
       <div class="plot"></div>
     </div><!-- /infoLayer -->
+    <div class="drawDiv"></div>
   </div><!-- /layerContainer -->
 </div><!-- /layerDialog -->
 
