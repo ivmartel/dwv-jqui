@@ -59,7 +59,7 @@ dwvjq.gui.info.Controller = function (app, containerDivId) {
   this.onLoadItem = function (event) {
     // create and store overlay data
     var data = event.data;
-    var dataUid = 0;
+    var dataUid;
     // check if dicom data (x00020010: transfer syntax)
     if (typeof data.x00020010 !== 'undefined') {
       if (typeof data.x00080018 !== 'undefined') {
@@ -73,7 +73,13 @@ dwvjq.gui.info.Controller = function (app, containerDivId) {
       );
     } else {
       // image file case
-      dataUid = data[5].value;
+      for (var d = 0; d < data.length; ++d) {
+        var obj = data[d];
+        if (obj.name === 'imageUid') {
+          dataUid = obj.value;
+          break;
+        }
+      }
       overlayData[dataUid] = dwvjq.gui.info.createOverlayDataForDom(data);
     }
 
@@ -93,7 +99,7 @@ dwvjq.gui.info.Controller = function (app, containerDivId) {
 
   /**
    * Handle a changed slice event.
-   * @param {Object} event The slice-change event.
+   * @param {Object} event The slicechange event.
    */
   function onSliceChange(event) {
     // change the overlay data to the one of the new slice
