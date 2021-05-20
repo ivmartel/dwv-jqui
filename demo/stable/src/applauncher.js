@@ -11,7 +11,7 @@ function startApp() {
   dwvjq.gui.setup();
 
   // show dwv version
-  dwvjq.gui.appendVersionHtml('0.5.0');
+  dwvjq.gui.appendVersionHtml('0.5.1');
 
   // application options
   var filterList = ['Threshold', 'Sharpen', 'Sobel'];
@@ -126,7 +126,7 @@ function startApp() {
   var nReceivedError = null;
   var nReceivedAbort = null;
   var isFirstRender = null;
-  myapp.addEventListener('loadstart', function (/*event*/) {
+  myapp.addEventListener('loadstart', function (event) {
     // reset counts
     nLoadItem = 0;
     nReceivedError = 0;
