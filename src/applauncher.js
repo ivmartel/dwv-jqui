@@ -11,7 +11,7 @@ function startApp() {
   dwvjq.gui.setup();
 
   // show dwv version
-  dwvjq.gui.appendVersionHtml('0.6.0-beta');
+  dwvjq.gui.appendVersionHtml(dwv.getVersion());
 
   // application options
   var filterList = ['Threshold', 'Sharpen', 'Sobel'];
@@ -120,6 +120,14 @@ function startApp() {
       myapp.abortLoad();
     }
   };
+  window.addEventListener('dblclick', function (event) {    
+    console.log('dblclick received');
+    var controller = myapp.getToolboxController();
+    var selectedTool = controller.getSelectedTool();
+    if (selectedTool instanceof dwv.tool.Livewire) {
+      drawListGui.performupdate();
+    }
+  });
 
   // handle load events
   var nLoadItem = null;
