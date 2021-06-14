@@ -23,11 +23,13 @@ function startApp() {
     'Rectangle',
     'Roi',
     'Ellipse',
+    'Circle',
     'FreeHand'
   ];
 
   var toolList = {
     Scroll: {},
+    Opacity: {},
     WindowLevel: {},
     ZoomAndPan: {},
     Draw: {
