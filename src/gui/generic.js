@@ -177,7 +177,9 @@ dwvjq.gui.DrawList = function (app) {
     app.addEventListener('drawchange', update);
     app.addEventListener('drawdelete', update);
   };
-
+  this.performupdate = function(){
+    update({editable: this.checked});
+  }
   /**
    * Update the draw list html element
    * @param {Object} event A change event, decides if the table is editable
