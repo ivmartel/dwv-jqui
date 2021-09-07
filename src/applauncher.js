@@ -101,14 +101,14 @@ function startApp() {
   drawListGui.init();
 
   // colour map
-  var infocm = dwvjq.gui.getElement('dwv', 'infocm');
+  var infocm = document.getElementById('infocm');
   var miniColourMap = null;
   if (infocm) {
     miniColourMap = new dwvjq.gui.info.MiniColourMap(infocm, myapp);
   }
 
   // intensities plot
-  var plot = dwvjq.gui.getElement('dwv', 'plot');
+  var plot = document.getElementById('plot');
   var plotInfo = null;
   if (plot) {
     plotInfo = new dwvjq.gui.info.Plot(plot, myapp);
@@ -141,6 +141,10 @@ function startApp() {
     // update info controller
     if (event.loadtype === 'image') {
       infoController.onLoadStart();
+    }
+    // create colour map (if present)
+    if (miniColourMap) {
+      miniColourMap.create();
     }
     // allow to cancel via crtl-x
     window.addEventListener('keydown', abortOnCrtlX);
