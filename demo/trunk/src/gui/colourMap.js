@@ -41,7 +41,10 @@ dwvjq.gui.info.MiniColourMap = function (div, app) {
     var canvas = div.getElementsByClassName('colour-map-info')[0];
     var context = canvas.getContext('2d');
     // fill in the image data
-    var colourMap = app.getViewController().getColourMap();
+    var layerController = app.getLayerController();
+    var viewController =
+      layerController.getActiveViewLayer().getViewController();
+    var colourMap = viewController.getColourMap();
     var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     // histogram sampling
     var c = 0;

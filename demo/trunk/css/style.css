@@ -28,7 +28,7 @@ li input {
 #pageHeader a {
   color: #ddf;
 }
-#pageHeader .toolbar {
+#pageHeader #dwv-toolbar {
   display: inline-block;
   float: right;
 }
@@ -68,10 +68,10 @@ li input {
 }
 
 /* toolbar */
-.toolList ul {
+#toolList ul {
   padding: 0;
 }
-.toolList li {
+#toolList li {
   list-style-type: none;
 }
 
@@ -164,11 +164,16 @@ li input {
   text-shadow: 0 1px 0 #000;
 }
 
-.plot {
+#plot {
   position: absolute;
   width: 100px;
   height: 50px;
   bottom: 15px;
+  right: 0;
+}
+#infocm {
+  position: absolute;
+  bottom: 5px;
   right: 0;
 }
 
@@ -203,7 +208,7 @@ table.drawsTable thead th {
 }
 
 /* draw list */
-.drawList tr:nth-child(even) {
+#dwv-drawList tr:nth-child(even) {
   background-color: #333;
 }
 /* history list */
