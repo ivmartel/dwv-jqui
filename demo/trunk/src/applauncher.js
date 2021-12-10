@@ -52,7 +52,7 @@ function startApp() {
 
   // initialise the application
   var options = {
-    containerDivId: 'dwv',
+    dataViewConfigs: {'*': [{divId: 'layerGroup0'}]},
     tools: toolList
   };
 
@@ -163,6 +163,7 @@ function startApp() {
   myapp.addEventListener('renderend', function (/*event*/) {
     if (isFirstRender) {
       isFirstRender = false;
+      infoController.fitContainer();
       // initialise and display the toolbox on first render
       toolboxGui.initialise();
       toolboxGui.display(true);
@@ -172,7 +173,7 @@ function startApp() {
     // initialise undo gui
     undoGui.setup();
     // update meta data table
-    metaDataGui.update(myapp.getMetaData());
+    metaDataGui.update(myapp.getMetaData(0));
 
     // create colour map (if present)
     if (miniColourMap) {
@@ -234,16 +235,17 @@ function startApp() {
   // handle window resize
   // WARNING: will fail if the resize happens and the image is not shown
   // (for example resizing while viewing the meta data table)
-  window.addEventListener('resize', myapp.onResize);
+  window.addEventListener('resize', function () {
+    myapp.onResize();
+    infoController.fitContainer();
+  });
 
   if (miniColourMap) {
-    myapp.addEventListener('wlwidthchange', miniColourMap.update);
-    myapp.addEventListener('wlcenterchange', miniColourMap.update);
+    myapp.addEventListener('wlchange', miniColourMap.update);
     myapp.addEventListener('colourchange', miniColourMap.update);
   }
   if (plotInfo) {
-    myapp.addEventListener('wlwidthchange', plotInfo.update);
-    myapp.addEventListener('wlcenterchange', plotInfo.update);
+    myapp.addEventListener('wlchange', plotInfo.update);
   }
 
   // possible load from location

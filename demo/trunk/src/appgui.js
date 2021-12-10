@@ -30,10 +30,11 @@ dwv.tool.defaultpresets.CT = {
 
 // dwv overrides -------------------------
 
-// prompt
-dwv.gui.prompt = dwvjq.gui.prompt;
-// get element
-dwv.gui.getElement = dwvjq.gui.getElement;
+// logger
+// (if debug, need to activate debug level in Chrome console)
+dwv.logger = dwv.utils.logger.console;
+dwv.logger.level = dwv.utils.logger.levels.DEBUG;
+
 
 // [end] dwv overrides -------------------------
 
