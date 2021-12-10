@@ -66,9 +66,6 @@
 
 <body>
 
-<!-- DWV -->
-<div id="dwv">
-
 <div id="pageHeader">
 
 <!-- Title -->
@@ -80,6 +77,9 @@
 </div><!-- /pageHeader -->
 
 <div id="pageMain">
+
+<!-- DWV -->
+<div id="dwv">
 
 <!-- Open file -->
 <div id="openData" title="File">
@@ -104,26 +104,33 @@
 
 <!-- Layer Container -->
 <div class="layerDialog" title="Image">
+
   <div class="layerContainer">
+    <!-- drop box -->
     <div id="dropBox"></div>
-    <div class="infoLayer">
-      <div id="infotl" class="infotl"></div>
-      <div id="infotc" class="infotc"></div>
-      <div id="infotr" class="infotr"></div>
-      <div id="infocl" class="infocl"></div>
-      <div id="infocr" class="infocr"></div>
-      <div id="infobl" class="infobl"></div>
-      <div id="infobc" class="infobc"></div>
-      <div id="infobr" class="infobr" style="bottom: 64px;"></div>
-      <div id="plot"></div>
-      <div id="infocm"></div>
-    </div><!-- /infoLayer -->
+    <!-- layer group -->
+    <div id="layerGroup0" class="layerGroup">
+      <div id="infoLayer">
+        <div id="infotl" class="infotl info"></div>
+        <div id="infotc" class="infotc infoc"></div>
+        <div id="infotr" class="infotr info"></div>
+        <div id="infocl" class="infocl infoc"></div>
+        <div id="infocr" class="infocr infoc"></div>
+        <div id="infobl" class="infobl info"></div>
+        <div id="infobc" class="infobc infoc"></div>
+        <!-- offset for plot -->
+        <div id="infobr" class="infobr info" style="bottom: 64px;"></div>
+        <div id="plot"></div>
+        <div id="infocm"></div>
+      </div><!-- /infoLayer -->
+    </div><!-- /layerGroup0 -->
   </div><!-- /layerContainer -->
+
 </div><!-- /layerDialog -->
 
-</div><!-- /pageMain -->
-
 </div><!-- /dwv -->
+
+</div><!-- /pageMain -->
 
 </body>
 </html>
