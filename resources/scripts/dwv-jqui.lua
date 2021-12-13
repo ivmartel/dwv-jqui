@@ -95,7 +95,7 @@ print([[
 print([[
 <!-- Third party (dwv) -->
 <script type="text/javascript" src="/dwv-jqui/node_modules/i18next/i18next.min.js"></script>
-<script type="text/javascript" src="/dwv-jqui/node_modules/i18next-xhr-backend/i18nextXHRBackend.min.js"></script>
+<script type="text/javascript" src="/dwv-jqui/node_modules/i18next-http-backend/i18nextHttpBackend.min.js"></script>
 <script type="text/javascript" src="/dwv-jqui/node_modules/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js"></script>
 <script type="text/javascript" src="/dwv-jqui/node_modules/jszip/dist/jszip.min.js"></script>
 <script type="text/javascript" src="/dwv-jqui/node_modules/konva/konva.min.js"></script>
