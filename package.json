@@ -15,7 +15,7 @@
     "url": "git://github.com/ivmartel/dwv-jqui.git"
   },
   "dependencies": {
-    "dwv": "0.30.4",
+    "dwv": "0.30.5",
     "jquery": "3.4.1"
   },
   "devDependencies": {
