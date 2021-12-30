@@ -24,6 +24,15 @@ dwvjq.gui.Toolbox = function (app) {
         toolGuis[gui].display(false);
       }
       toolGuis[event.currentTarget.value].display(true);
+      if(event.currentTarget.value=="Livewire"){
+        console.log('livewire patch');
+        //Special processing here for livewire
+        // var drawDisplayDetails = app.getDrawDisplayDetails();
+        var st_json = app.getState();
+        var st = JSON.parse(st_json);
+        app.deleteDraws();
+        app.setDrawings(st.drawings,st.drawingDetails);
+      }
     };
 
     // tool list element
