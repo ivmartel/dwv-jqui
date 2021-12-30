@@ -11,7 +11,7 @@ function startApp() {
   dwvjq.gui.setup();
 
   // show dwv version
-  dwvjq.gui.appendVersionHtml('0.5.1');
+  dwvjq.gui.appendVersionHtml('0.6.0');
 
   // application options
   var filterList = ['Threshold', 'Sharpen', 'Sobel'];
@@ -23,11 +23,13 @@ function startApp() {
     'Rectangle',
     'Roi',
     'Ellipse',
+    'Circle',
     'FreeHand'
   ];
 
   var toolList = {
     Scroll: {},
+    Opacity: {},
     WindowLevel: {},
     ZoomAndPan: {},
     Draw: {
@@ -50,7 +52,7 @@ function startApp() {
 
   // initialise the application
   var options = {
-    containerDivId: 'dwv',
+    dataViewConfigs: {'*': [{divId: 'layerGroup0'}]},
     tools: toolList
   };
 
@@ -99,14 +101,14 @@ function startApp() {
   drawListGui.init();
 
   // colour map
-  var infocm = dwvjq.gui.getElement('dwv', 'infocm');
+  var infocm = document.getElementById('infocm');
   var miniColourMap = null;
   if (infocm) {
     miniColourMap = new dwvjq.gui.info.MiniColourMap(infocm, myapp);
   }
 
   // intensities plot
-  var plot = dwvjq.gui.getElement('dwv', 'plot');
+  var plot = document.getElementById('plot');
   var plotInfo = null;
   if (plot) {
     plotInfo = new dwvjq.gui.info.Plot(plot, myapp);
@@ -140,6 +142,10 @@ function startApp() {
     if (event.loadtype === 'image') {
       infoController.onLoadStart();
     }
+    // create colour map (if present)
+    if (miniColourMap) {
+      miniColourMap.create();
+    }
     // allow to cancel via crtl-x
     window.addEventListener('keydown', abortOnCrtlX);
   });
@@ -157,6 +163,7 @@ function startApp() {
   myapp.addEventListener('renderend', function (/*event*/) {
     if (isFirstRender) {
       isFirstRender = false;
+      infoController.fitContainer();
       // initialise and display the toolbox on first render
       toolboxGui.initialise();
       toolboxGui.display(true);
@@ -166,7 +173,7 @@ function startApp() {
     // initialise undo gui
     undoGui.setup();
     // update meta data table
-    metaDataGui.update(myapp.getMetaData());
+    metaDataGui.update(myapp.getMetaData(0));
 
     // create colour map (if present)
     if (miniColourMap) {
@@ -228,16 +235,17 @@ function startApp() {
   // handle window resize
   // WARNING: will fail if the resize happens and the image is not shown
   // (for example resizing while viewing the meta data table)
-  window.addEventListener('resize', myapp.onResize);
+  window.addEventListener('resize', function () {
+    myapp.onResize();
+    infoController.fitContainer();
+  });
 
   if (miniColourMap) {
-    myapp.addEventListener('wlwidthchange', miniColourMap.update);
-    myapp.addEventListener('wlcenterchange', miniColourMap.update);
+    myapp.addEventListener('wlchange', miniColourMap.update);
     myapp.addEventListener('colourchange', miniColourMap.update);
   }
   if (plotInfo) {
-    myapp.addEventListener('wlwidthchange', plotInfo.update);
-    myapp.addEventListener('wlcenterchange', plotInfo.update);
+    myapp.addEventListener('wlchange', plotInfo.update);
   }
 
   // possible load from location

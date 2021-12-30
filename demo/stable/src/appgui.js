@@ -30,10 +30,11 @@ dwv.tool.defaultpresets.CT = {
 
 // dwv overrides -------------------------
 
-// prompt
-dwv.gui.prompt = dwvjq.gui.prompt;
-// get element
-dwv.gui.getElement = dwvjq.gui.getElement;
+// logger
+// (if debug, need to activate debug level in Chrome console)
+dwv.logger = dwv.utils.logger.console;
+dwv.logger.level = dwv.utils.logger.levels.DEBUG;
+
 
 // [end] dwv overrides -------------------------
 
@@ -62,7 +63,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     open.appendChild(openSpan);
     open.title = dwv.i18n('basics.open');
     open.onclick = function () {
-      toggle('.openData');
+      toggle('#openData');
     };
     // toolbox
     var toolboxSpan = document.createElement('span');
@@ -71,7 +72,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     toolbox.appendChild(toolboxSpan);
     toolbox.title = dwv.i18n('basics.toolbox');
     toolbox.onclick = function () {
-      toggle('.toolList');
+      toggle('#dwv-toolList');
     };
     // history
     var historySpan = document.createElement('span');
@@ -80,7 +81,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     history.appendChild(historySpan);
     history.title = dwv.i18n('basics.history');
     history.onclick = function () {
-      toggle('.history');
+      toggle('#dwv-history');
     };
     // DICOM tags
     var tagsSpan = document.createElement('span');
@@ -89,7 +90,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     tags.appendChild(tagsSpan);
     tags.title = dwv.i18n('basics.dicomTags');
     tags.onclick = function () {
-      toggle('.tags');
+      toggle('#dwv-tags');
     };
     // draw list
     var drawListSpan = document.createElement('span');
@@ -98,7 +99,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     drawList.appendChild(drawListSpan);
     drawList.title = dwv.i18n('basics.drawList');
     drawList.onclick = function () {
-      toggle('.drawList');
+      toggle('#dwv-drawList');
     };
     // image
     var imageSpan = document.createElement('span');
@@ -116,7 +117,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     info.appendChild(infoSpan);
     info.title = dwv.i18n('basics.info');
     info.onclick = function () {
-      var infoLayer = app.getElement('infoLayer');
+      var infoLayer = document.getElementsByClassName('infoLayer')[0];
       dwvjq.html.toggleDisplay(infoLayer);
       infoController.toggleListeners();
     };
@@ -127,10 +128,10 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     help.appendChild(helpSpan);
     help.title = dwv.i18n('basics.help');
     help.onclick = function () {
-      toggle('.help');
+      toggle('#dwv-help');
     };
 
-    var node = app.getElement('toolbar');
+    var node = document.getElementById('dwv-toolbar');
     node.appendChild(open);
     node.appendChild(toolbox);
     node.appendChild(history);
@@ -159,7 +160,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     toggleSaveState.className += 'download-state';
     toggleSaveState.appendChild(saveButton);
     // add to openData window
-    node = app.getElement('openData');
+    node = document.getElementById('openData');
     node.appendChild(toggleSaveState);
   };
 
@@ -179,33 +180,33 @@ dwvjq.gui.setup = function () {
     appendTo: '#dwv'
   });
   // create dialogs
-  $('.openData').dialog({
+  $('#openData').dialog({
     position: {my: 'left top', at: 'left top', of: '#pageMain'},
     appendTo: '#dwv'
   });
-  $('.toolList').dialog({
+  $('#dwv-toolList').dialog({
     position: {my: 'left top+180', at: 'left top', of: '#pageMain'},
     appendTo: '#dwv'
   });
-  $('.history').dialog({
+  $('#dwv-history').dialog({
     position: {my: 'left top+350', at: 'left top', of: '#pageMain'},
     appendTo: '#dwv'
   });
-  $('.tags').dialog({
+  $('#dwv-tags').dialog({
     position: {my: 'right top', at: 'right top', of: '#pageMain'},
     autoOpen: false,
     width: 500,
     height: 590,
     appendTo: '#dwv'
   });
-  $('.drawList').dialog({
+  $('#dwv-drawList').dialog({
     position: {my: 'right top', at: 'right top', of: '#pageMain'},
     autoOpen: false,
     width: 500,
     height: 590,
     appendTo: '#dwv'
   });
-  $('.help').dialog({
+  $('#dwv-help').dialog({
     position: {my: 'right top', at: 'right top', of: '#pageMain'},
     autoOpen: false,
     width: 500,
