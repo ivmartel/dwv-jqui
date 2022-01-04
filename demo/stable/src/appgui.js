@@ -117,7 +117,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     info.appendChild(infoSpan);
     info.title = dwv.i18n('basics.info');
     info.onclick = function () {
-      var infoLayer = document.getElementsByClassName('infoLayer')[0];
+      var infoLayer = document.getElementById('infoLayer');
       dwvjq.html.toggleDisplay(infoLayer);
       infoController.toggleListeners();
     };
