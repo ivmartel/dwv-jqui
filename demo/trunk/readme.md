@@ -18,7 +18,7 @@ dwv-jqui is not certified for diagnostic use. Released under GNU GPL-3.0 license
 ## Steps to run the viewer from scratch
 
 ```sh
-#get the code
+# get the code
 git clone https://github.com/ivmartel/dwv-jqui.git
 
 # move to its folder
