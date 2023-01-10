@@ -836,9 +836,9 @@ grunt-contrib-watch@^1.1.0:
     tiny-lr "^1.1.1"
 
 grunt-eslint@^24.0.0:
-  version "24.0.0"
-  resolved "https://registry.yarnpkg.com/grunt-eslint/-/grunt-eslint-24.0.0.tgz#ad14e1cd9c869e0365e2bf4a97241c0c8844c7cc"
-  integrity sha512-WpTeBBFweyhMuPjGwRSQV9JFJ+EczIdlsc7Dd/1g78QVI1aZsk4g/H3e+3S5HEwsS1RKL2YZIrGj8hMLlBfN8w==
+  version "24.0.1"
+  resolved "https://registry.yarnpkg.com/grunt-eslint/-/grunt-eslint-24.0.1.tgz#a07f4063931c6fefcffbfdf2e60ddfd558d5ba31"
+  integrity sha512-gFzp+ikAkwyu6nqBE2zx1pLVL0JPrerG7jaO4uJV3XUGKPIipv4mfhDOS5MyiMrzUtGdXSW8FkRHjoUnfqbW+g==
   dependencies:
     chalk "^4.1.2"
     eslint "^8.0.1"
@@ -880,9 +880,9 @@ grunt-legacy-util@~2.0.1:
     which "~2.0.2"
 
 grunt@^1.4.0:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/grunt/-/grunt-1.5.2.tgz#46b014e28d17c85baac19d5e891bb3f04923c098"
-  integrity sha512-XCtfaIu72OyDqK24MjWiGC9SwlkuhkS1mrULr1xzuJ2XqAFhP3ZAchZGHJeSCY6mkaOXU4F7SbmmCF7xIVoC9w==
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/grunt/-/grunt-1.5.3.tgz#3214101d11257b7e83cf2b38ea173b824deab76a"
+  integrity sha512-mKwmo4X2d8/4c/BmcOETHek675uOqw0RuA/zy12jaspWqvTp4+ZeQF1W+OTpcbncnaBsfbQJ6l0l4j+Sn/GmaQ==
   dependencies:
     dateformat "~3.0.3"
     eventemitter2 "~0.4.13"
