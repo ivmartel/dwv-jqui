@@ -41,7 +41,7 @@ dwvjq.gui.info.MiniColourMap = function (div, app) {
     var canvas = div.getElementsByClassName('colour-map-info')[0];
     var context = canvas.getContext('2d');
     // fill in the image data
-    var lg = app.getLayerGroupById(0);
+    var lg = app.getActiveLayerGroup();
     var vl = lg.getActiveViewLayer();
     var viewController = vl.getViewController();
     var colourMap = viewController.getColourMap();
