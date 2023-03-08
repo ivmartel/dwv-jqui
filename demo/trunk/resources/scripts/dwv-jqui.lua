@@ -94,9 +94,6 @@ print([[
 
 print([[
 <!-- Third party (dwv) -->
-<script type="text/javascript" src="/dwv-jqui/node_modules/i18next/i18next.min.js"></script>
-<script type="text/javascript" src="/dwv-jqui/node_modules/i18next-http-backend/i18nextHttpBackend.min.js"></script>
-<script type="text/javascript" src="/dwv-jqui/node_modules/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js"></script>
 <script type="text/javascript" src="/dwv-jqui/node_modules/jszip/dist/jszip.min.js"></script>
 <script type="text/javascript" src="/dwv-jqui/node_modules/konva/konva.min.js"></script>
 <script type="text/javascript" src="/dwv-jqui/node_modules/magic-wand-js/js/magic-wand-min.js"></script>
@@ -107,6 +104,9 @@ print([[
 <script type="text/javascript" src="/dwv-jqui/node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="/dwv-jqui/ext/jquery-ui/jquery-ui-1.12.1.min.js"></script>
 <script type="text/javascript" src="/dwv-jqui/ext/flot/jquery.flot.min.js"></script>
+<script type="text/javascript" src="/dwv-jqui/node_modules/i18next/i18next.min.js"></script>
+<script type="text/javascript" src="/dwv-jqui/node_modules/i18next-http-backend/i18nextHttpBackend.min.js"></script>
+<script type="text/javascript" src="/dwv-jqui/node_modules/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js"></script>
 ]])
 
 print([[
