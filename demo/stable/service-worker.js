@@ -1,7 +1,7 @@
 // https://developers.google.com/web/fundamentals/primers/service-workers/
 // chrome: chrome://inspect/#service-workers
 
-var CACHE_NAME = 'dwv-jqui-cache_v0.6.1';
+var CACHE_NAME = 'dwv-jqui-cache_v0.7.0';
 var urlsToCache = [
   './',
   './index.html',
@@ -35,23 +35,23 @@ var urlsToCache = [
   './resources/help/mouse_drag.png',
   './resources/help/mouse_wheel.png',
   // translations
-  './node_modules/dwv/locales/de/translation.json',
-  './node_modules/dwv/locales/en/translation.json',
-  './node_modules/dwv/locales/es/translation.json',
-  './node_modules/dwv/locales/fr/translation.json',
-  './node_modules/dwv/locales/it/translation.json',
-  './node_modules/dwv/locales/jp/translation.json',
-  './node_modules/dwv/locales/ru/translation.json',
-  './node_modules/dwv/locales/zh/translation.json',
+  './resources/locales/de/translation.json',
+  './resources/locales/en/translation.json',
+  './resources/locales/es/translation.json',
+  './resources/locales/fr/translation.json',
+  './resources/locales/it/translation.json',
+  './resources/locales/jp/translation.json',
+  './resources/locales/ru/translation.json',
+  './resources/locales/zh/translation.json',
   // overlays
-  './node_modules/dwv/locales/de/overlays.json',
-  './node_modules/dwv/locales/en/overlays.json',
-  './node_modules/dwv/locales/es/overlays.json',
-  './node_modules/dwv/locales/fr/overlays.json',
-  './node_modules/dwv/locales/it/overlays.json',
-  './node_modules/dwv/locales/jp/overlays.json',
-  './node_modules/dwv/locales/ru/overlays.json',
-  './node_modules/dwv/locales/zh/overlays.json',
+  './resources/locales/de/overlays.json',
+  './resources/locales/en/overlays.json',
+  './resources/locales/es/overlays.json',
+  './resources/locales/fr/overlays.json',
+  './resources/locales/it/overlays.json',
+  './resources/locales/jp/overlays.json',
+  './resources/locales/ru/overlays.json',
+  './resources/locales/zh/overlays.json',
 
   // third party
 
@@ -75,10 +75,6 @@ var urlsToCache = [
   './ext/jquery-ui/themes/ui-darkness/images/ui-icons_ffffff_256x240.png',
   // js: dwv
   './node_modules/dwv/dist/dwv.min.js',
-  './node_modules/i18next/i18next.min.js',
-  './node_modules/i18next-http-backend/i18nextHttpBackend.min.js',
-  './node_modules/i18next-browser-languagedetector/' +
-    'i18nextBrowserLanguageDetector.min.js',
   './node_modules/jszip/dist/jszip.min.js',
   './node_modules/konva/konva.min.js',
   './node_modules/magic-wand-tool/dist/magic-wand.min.js',
@@ -86,6 +82,10 @@ var urlsToCache = [
   './node_modules/jquery/dist/jquery.min.js',
   './ext/jquery-ui/jquery-ui-1.12.1.min.js',
   './ext/flot/jquery.flot.min.js',
+  './node_modules/i18next/i18next.min.js',
+  './node_modules/i18next-http-backend/i18nextHttpBackend.min.js',
+  './node_modules/i18next-browser-languagedetector/' +
+    'i18nextBrowserLanguageDetector.min.js',
   // js: decoders
   './node_modules/dwv/decoders/dwv/rle.js',
   './node_modules/dwv/decoders/dwv/decode-rle.js',

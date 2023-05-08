@@ -11,7 +11,7 @@ function startApp() {
   dwvjq.gui.setup();
 
   // show dwv version
-  dwvjq.gui.appendVersionHtml('0.6.1');
+  dwvjq.gui.appendVersionHtml('0.7.0');
 
   // application options
   var filterList = ['Threshold', 'Sharpen', 'Sobel'];
@@ -33,21 +33,13 @@ function startApp() {
     WindowLevel: {},
     ZoomAndPan: {},
     Draw: {
-      options: shapeList,
-      type: 'factory',
-      events: ['drawcreate', 'drawchange', 'drawmove', 'drawdelete']
+      options: shapeList
     },
-    Livewire: {
-      events: ['drawcreate', 'drawchange', 'drawmove', 'drawdelete']
-    },
+    Livewire: {},
     Filter: {
-      options: filterList,
-      type: 'instance',
-      events: ['filterrun', 'filterundo']
+      options: filterList
     },
-    Floodfill: {
-      events: ['drawcreate', 'drawchange', 'drawmove', 'drawdelete']
-    }
+    Floodfill: {}
   };
 
   // initialise the application
@@ -86,8 +78,11 @@ function startApp() {
   loadboxGui.setup(loaderList);
 
   // info layer
-  var infoController = new dwvjq.gui.info.Controller(myapp, 'dwv');
+  var infoController = new dwvjq.gui.info.Controller(myapp);
   infoController.init();
+
+  var infoElement = document.getElementById('infoLayer');
+  var infoOverlay = new dwvjq.gui.info.Overlay(infoElement);
 
   // setup the tool gui
   var toolboxGui = new dwvjq.gui.ToolboxContainer(myapp, infoController);
@@ -125,14 +120,14 @@ function startApp() {
 
   // handle load events
   var nLoadItem = null;
-  var nReceivedError = null;
-  var nReceivedAbort = null;
+  var nReceivedLoadError = null;
+  var nReceivedLoadAbort = null;
   var isFirstRender = null;
   myapp.addEventListener('loadstart', function (event) {
     // reset counts
     nLoadItem = 0;
-    nReceivedError = 0;
-    nReceivedAbort = 0;
+    nReceivedLoadError = 0;
+    nReceivedLoadAbort = 0;
     isFirstRender = true;
     // hide drop box
     dropBoxLoader.showDropbox(false);
@@ -140,7 +135,7 @@ function startApp() {
     dwvjq.gui.displayProgress(0);
     // update info controller
     if (event.loadtype === 'image') {
-      infoController.onLoadStart();
+      infoController.reset();
     }
     // create colour map (if present)
     if (miniColourMap) {
@@ -160,10 +155,14 @@ function startApp() {
       infoController.onLoadItem(event);
     }
   });
+  myapp.addEventListener('renderstart', function (/*event*/) {
+    if (isFirstRender) {
+      infoController.addEventListener('valuechange', infoOverlay.onDataChange);
+    }
+  });
   myapp.addEventListener('renderend', function (/*event*/) {
     if (isFirstRender) {
       isFirstRender = false;
-      infoController.fitContainer();
       // initialise and display the toolbox on first render
       toolboxGui.initialise();
       toolboxGui.display(true);
@@ -184,19 +183,19 @@ function startApp() {
       plotInfo.create();
     }
   });
-  myapp.addEventListener('error', function (event) {
+  myapp.addEventListener('loaderror', function (event) {
     console.error('load error', event);
-    ++nReceivedError;
+    ++nReceivedLoadError;
   });
-  myapp.addEventListener('abort', function (/*event*/) {
-    ++nReceivedAbort;
+  myapp.addEventListener('loadabort', function (/*event*/) {
+    ++nReceivedLoadAbort;
   });
   myapp.addEventListener('loadend', function (/*event*/) {
     // show alert for errors
-    if (nReceivedError) {
+    if (nReceivedLoadError) {
       var message = 'A load error has ';
-      if (nReceivedError > 1) {
-        message = nReceivedError + ' load errors have ';
+      if (nReceivedLoadError > 1) {
+        message = nReceivedLoadError + ' load errors have ';
       }
       message += 'occured. See log for details.';
       alert(message);
@@ -206,7 +205,7 @@ function startApp() {
       }
     }
     // console warn for aborts
-    if (nReceivedAbort !== 0) {
+    if (nReceivedLoadAbort !== 0) {
       console.warn('Data load was aborted.');
       dropBoxLoader.showDropbox(true);
     }
@@ -237,7 +236,6 @@ function startApp() {
   // (for example resizing while viewing the meta data table)
   window.addEventListener('resize', function () {
     myapp.onResize();
-    infoController.fitContainer();
   });
 
   if (miniColourMap) {
@@ -278,7 +276,7 @@ function launchApp() {
   }
 }
 // i18n ready?
-dwv.i18nOnInitialised(function () {
+dwvjq.i18nOnInitialised(function () {
   // call next once the overlays are loaded
   var onLoaded = function (data) {
     dwvjq.gui.info.overlayMaps = data;
@@ -286,16 +284,17 @@ dwv.i18nOnInitialised(function () {
     launchApp();
   };
   // load overlay map info
-  $.getJSON(dwv.i18nGetLocalePath('overlays.json'), onLoaded).fail(function () {
+  $.getJSON(dwvjq.i18nGetLocalePath('overlays.json'),
+    onLoaded).fail(function () {
     console.log('Using fallback overlays.');
-    $.getJSON(dwv.i18nGetFallbackLocalePath('overlays.json'), onLoaded);
+    $.getJSON(dwvjq.i18nGetFallbackLocalePath('overlays.json'), onLoaded);
   });
 });
 
 // check environment support
 dwv.env.check();
 // initialise i18n
-dwv.i18nInitialise('auto', 'node_modules/dwv');
+dwvjq.i18nInitialise('auto', './resources');
 
 // DOM ready?
 $(document).ready(function () {
