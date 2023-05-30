@@ -61,3 +61,7 @@ dwvjq.gui.Slider = function (app) {
     });
   };
 }; // class dwvjq.gui.Slider
+
+dwvjq.gui.setSliderChangeHandler = function (sliderId, handler) {
+  document.getElementById(sliderId).addEventListener('input', handler);
+};
