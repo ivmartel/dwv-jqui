@@ -72,7 +72,7 @@ function startApp() {
   // setup the loadbox gui
   var loadboxGui = new dwvjq.gui.Loadbox(myapp);
   var loaderList = ['File', 'Url'];
-  if (dwv.env.hasInputDirectory()) {
+  if (dwvjq.browser.hasInputDirectory()) {
     loaderList.splice(1, 0, 'Folder');
   }
   loadboxGui.setup(loaderList);
@@ -247,7 +247,7 @@ function startApp() {
   }
 
   // possible load from location
-  dwv.utils.loadFromUri(window.location.href, myapp);
+  myapp.loadFromUri(window.location.href);
 
   // help
   // TODO Seems accordion only works when at end...
@@ -259,12 +259,14 @@ function startApp() {
 }
 
 // Image decoders (for web workers)
-dwv.image.decoderScripts = {
-  jpeg2000: 'node_modules/dwv/decoders/pdfjs/decode-jpeg2000.js',
-  'jpeg-lossless': 'node_modules/dwv/decoders/rii-mango/decode-jpegloss.js',
-  'jpeg-baseline': 'node_modules/dwv/decoders/pdfjs/decode-jpegbaseline.js',
-  rle: 'node_modules/dwv/decoders/dwv/decode-rle.js'
-};
+dwv.decoderScripts.jpeg2000 =
+  'node_modules/dwv/decoders/pdfjs/decode-jpeg2000.js';
+dwv.decoderScripts['jpeg-lossless'] =
+  'node_modules/dwv/decoders/rii-mango/decode-jpegloss.js';
+dwv.decoderScripts['jpeg-baseline'] =
+  'node_modules/dwv/decoders/pdfjs/decode-jpegbaseline.js';
+dwv.decoderScripts.rle =
+  'node_modules/dwv/decoders/dwv/decode-rle.js';
 
 // status flags
 var domContentLoaded = false;
@@ -291,8 +293,6 @@ dwvjq.i18n.onInitialised(function () {
   });
 });
 
-// check environment support
-dwv.env.check();
 // initialise i18n
 dwvjq.i18n.initialise('auto', './resources');
 
