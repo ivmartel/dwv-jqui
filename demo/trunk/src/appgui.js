@@ -143,7 +143,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     // save state link
     var toggleSaveState = document.createElement('a');
     toggleSaveState.onclick = function () {
-      var blob = new Blob([app.getState()], {type: 'application/json'});
+      var blob = new Blob([app.getJsonState()], {type: 'application/json'});
       toggleSaveState.href = window.URL.createObjectURL(blob);
     };
     toggleSaveState.download = 'state.json';
