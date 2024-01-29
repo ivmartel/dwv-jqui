@@ -991,16 +991,16 @@ i18next-browser-languagedetector@~7.2.0:
     "@babel/runtime" "^7.23.2"
 
 i18next-http-backend@~2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.4.1.tgz#b0cd4926ea71a689da22d2b55ea2bc37fde8909a"
-  integrity sha512-CZHzFGDvF8zN7ya1W2lHbgLj2ejPUvPD836+vA3eNXc9eKGUM3MSF6SA2TKBXKBZ2cNG3nxzycCXeM6n/46KWQ==
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.4.2.tgz#bd53cacaed671e9f38bdcfd46ac9d1763a898186"
+  integrity sha512-wKrgGcaFQ4EPjfzBTjzMU0rbFTYpa0S5gv9N/d8WBmWS64+IgJb7cHddMvV+tUkse7vUfco3eVs2lB+nJhPo3w==
   dependencies:
     cross-fetch "4.0.0"
 
-i18next@~23.7.5:
-  version "23.7.5"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.7.5.tgz#f9c870ffed5b60b102f2f10ccf31dd55de2b2c8c"
-  integrity sha512-IKpP+vu/sU3UYZe6ajizEXiretu6YJQE0zhkPJBoiOboiR4NLzbtJP/MADCcNx9nAGYM5WTEW4MBvaDx+gK+6A==
+i18next@~23.8.1:
+  version "23.8.1"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.8.1.tgz#c9c6c0a2718177457192d3a867af5b35cd2f46fe"
+  integrity sha512-Yhe6oiJhigSh64ev7nVVywu7vHjuUG41MRmFKNwphbkadqTL1ozZFBQISflY7/ju+gL6I/SPfI1GgWQh1yYArA==
   dependencies:
     "@babel/runtime" "^7.23.2"
 
