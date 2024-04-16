@@ -1,6 +1,6 @@
 {
   "name": "dwv-jqui",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Medical viewer using DWV (DICOM Web Viewer) and jQuery UI.",
   "keywords": [
     "DICOM",
@@ -15,16 +15,16 @@
     "url": "git://github.com/ivmartel/dwv-jqui.git"
   },
   "dependencies": {
-    "dwv": "0.31.2",
-    "i18next": "~22.4.11",
-    "i18next-browser-languagedetector": "~7.0.1",
-    "i18next-http-backend": "~2.2.0",
+    "dwv": "0.32.4",
+    "i18next": "~23.11.2",
+    "i18next-browser-languagedetector": "~7.2.0",
+    "i18next-http-backend": "~2.5.0",
     "jquery": "3.4.1"
   },
   "devDependencies": {
     "grunt": "^1.4.0",
     "grunt-cli": "^1.4.2",
-    "grunt-contrib-connect": "^3.0.0",
+    "grunt-contrib-connect": "^4.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^24.0.0"

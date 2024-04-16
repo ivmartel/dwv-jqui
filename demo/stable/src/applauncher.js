@@ -11,7 +11,7 @@ function startApp() {
   dwvjq.gui.setup();
 
   // show dwv version
-  dwvjq.gui.appendVersionHtml('0.7.0');
+  dwvjq.gui.appendVersionHtml('0.8.0');
 
   // application options
   var filterList = ['Threshold', 'Sharpen', 'Sobel'];
@@ -72,7 +72,7 @@ function startApp() {
   // setup the loadbox gui
   var loadboxGui = new dwvjq.gui.Loadbox(myapp);
   var loaderList = ['File', 'Url'];
-  if (dwv.env.hasInputDirectory()) {
+  if (dwvjq.browser.hasInputDirectory()) {
     loaderList.splice(1, 0, 'Folder');
   }
   loadboxGui.setup(loaderList);
@@ -247,7 +247,7 @@ function startApp() {
   }
 
   // possible load from location
-  dwv.utils.loadFromUri(window.location.href, myapp);
+  myapp.loadFromUri(window.location.href);
 
   // help
   // TODO Seems accordion only works when at end...
@@ -259,12 +259,14 @@ function startApp() {
 }
 
 // Image decoders (for web workers)
-dwv.image.decoderScripts = {
-  jpeg2000: 'node_modules/dwv/decoders/pdfjs/decode-jpeg2000.js',
-  'jpeg-lossless': 'node_modules/dwv/decoders/rii-mango/decode-jpegloss.js',
-  'jpeg-baseline': 'node_modules/dwv/decoders/pdfjs/decode-jpegbaseline.js',
-  rle: 'node_modules/dwv/decoders/dwv/decode-rle.js'
-};
+dwv.decoderScripts.jpeg2000 =
+  'node_modules/dwv/decoders/pdfjs/decode-jpeg2000.js';
+dwv.decoderScripts['jpeg-lossless'] =
+  'node_modules/dwv/decoders/rii-mango/decode-jpegloss.js';
+dwv.decoderScripts['jpeg-baseline'] =
+  'node_modules/dwv/decoders/pdfjs/decode-jpegbaseline.js';
+dwv.decoderScripts.rle =
+  'node_modules/dwv/decoders/dwv/decode-rle.js';
 
 // status flags
 var domContentLoaded = false;
@@ -276,7 +278,7 @@ function launchApp() {
   }
 }
 // i18n ready?
-dwvjq.i18nOnInitialised(function () {
+dwvjq.i18n.onInitialised(function () {
   // call next once the overlays are loaded
   var onLoaded = function (data) {
     dwvjq.gui.info.overlayMaps = data;
@@ -284,17 +286,15 @@ dwvjq.i18nOnInitialised(function () {
     launchApp();
   };
   // load overlay map info
-  $.getJSON(dwvjq.i18nGetLocalePath('overlays.json'),
+  $.getJSON(dwvjq.i18n.getLocalePath('overlays.json'),
     onLoaded).fail(function () {
     console.log('Using fallback overlays.');
-    $.getJSON(dwvjq.i18nGetFallbackLocalePath('overlays.json'), onLoaded);
+    $.getJSON(dwvjq.i18n.getFallbackLocalePath('overlays.json'), onLoaded);
   });
 });
 
-// check environment support
-dwv.env.check();
 // initialise i18n
-dwvjq.i18nInitialise('auto', './resources');
+dwvjq.i18n.initialise('auto', './resources');
 
 // DOM ready?
 $(document).ready(function () {

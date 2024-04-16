@@ -7,36 +7,27 @@ dwvjq.utils = dwvjq.utils || {};
  */
 
 // Default colour maps.
-dwv.tool.colourMaps = {
-  plain: dwv.image.lut.plain,
-  invplain: dwv.image.lut.invPlain,
-  rainbow: dwv.image.lut.rainbow,
-  hot: dwv.image.lut.hot,
-  hotiron: dwv.image.lut.hot_iron,
-  pet: dwv.image.lut.pet,
-  hotmetalblue: dwv.image.lut.hot_metal_blue,
-  pet20step: dwv.image.lut.pet_20step
+dwv.luts = {
+  plain: dwv.luts.plain,
+  invPlain: dwv.luts.invPlain,
+  rainbow: dwv.luts.rainbow,
+  hot: dwv.luts.hot,
+  hot_iron: dwv.luts.hot_iron,
+  pet: dwv.luts.pet,
+  hot_metal_blue: dwv.luts.hot_metal_blue,
+  pet_20step: dwv.luts.pet_20step
 };
 
 // Default window level presets.
-dwv.tool.defaultpresets = {};
+dwv.defaultpresets = {};
 // Default window level presets for CT.
-dwv.tool.defaultpresets.CT = {
+dwv.defaultpresets.CT = {
   mediastinum: {center: 40, width: 400},
   lung: {center: -500, width: 1500},
   bone: {center: 500, width: 2000},
   brain: {center: 40, width: 80},
   head: {center: 90, width: 350}
 };
-
-// dwv overrides -------------------------
-
-// logger
-// (if debug, need to activate debug level in Chrome console)
-dwv.logger = dwv.utils.logger.console;
-dwv.logger.level = dwv.utils.logger.levels.DEBUG;
-
-// [end] dwv overrides -------------------------
 
 // tool toggle
 function toggle(dialogId) {
@@ -61,7 +52,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     openSpan.className = 'ui-icon ui-icon-plus';
     var open = document.createElement('button');
     open.appendChild(openSpan);
-    open.title = dwv.i18n('basics.open');
+    open.title = dwvjq.i18n.t('basics.open');
     open.onclick = function () {
       toggle('#openData');
     };
@@ -70,7 +61,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     toolboxSpan.className = 'ui-icon ui-icon-wrench';
     var toolbox = document.createElement('button');
     toolbox.appendChild(toolboxSpan);
-    toolbox.title = dwv.i18n('basics.toolbox');
+    toolbox.title = dwvjq.i18n.t('basics.toolbox');
     toolbox.onclick = function () {
       toggle('#dwv-toolList');
     };
@@ -79,7 +70,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     historySpan.className = 'ui-icon ui-icon-clipboard';
     var history = document.createElement('button');
     history.appendChild(historySpan);
-    history.title = dwv.i18n('basics.history');
+    history.title = dwvjq.i18n.t('basics.history');
     history.onclick = function () {
       toggle('#dwv-history');
     };
@@ -88,7 +79,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     tagsSpan.className = 'ui-icon ui-icon-tag';
     var tags = document.createElement('button');
     tags.appendChild(tagsSpan);
-    tags.title = dwv.i18n('basics.dicomTags');
+    tags.title = dwvjq.i18n.t('basics.dicomTags');
     tags.onclick = function () {
       toggle('#dwv-tags');
     };
@@ -97,7 +88,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     drawListSpan.className = 'ui-icon ui-icon-pencil';
     var drawList = document.createElement('button');
     drawList.appendChild(drawListSpan);
-    drawList.title = dwv.i18n('basics.drawList');
+    drawList.title = dwvjq.i18n.t('basics.drawList');
     drawList.onclick = function () {
       toggle('#dwv-drawList');
     };
@@ -106,7 +97,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     imageSpan.className = 'ui-icon ui-icon-image';
     var image = document.createElement('button');
     image.appendChild(imageSpan);
-    image.title = dwv.i18n('basics.image');
+    image.title = dwvjq.i18n.t('basics.image');
     image.onclick = function () {
       toggle('.layerDialog');
     };
@@ -115,7 +106,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     infoSpan.className = 'ui-icon ui-icon-info';
     var info = document.createElement('button');
     info.appendChild(infoSpan);
-    info.title = dwv.i18n('basics.info');
+    info.title = dwvjq.i18n.t('basics.info');
     info.onclick = function () {
       var infoLayer = document.getElementById('infoLayer');
       dwvjq.html.toggleDisplay(infoLayer);
@@ -126,7 +117,7 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     helpSpan.className = 'ui-icon ui-icon-help';
     var help = document.createElement('button');
     help.appendChild(helpSpan);
-    help.title = dwv.i18n('basics.help');
+    help.title = dwvjq.i18n.t('basics.help');
     help.onclick = function () {
       toggle('#dwv-help');
     };
@@ -147,12 +138,12 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
     // save state button
     var saveButton = document.createElement('button');
     saveButton.appendChild(
-      document.createTextNode(dwv.i18n('basics.downloadState'))
+      document.createTextNode(dwvjq.i18n.t('basics.downloadState'))
     );
     // save state link
     var toggleSaveState = document.createElement('a');
     toggleSaveState.onclick = function () {
-      var blob = new Blob([app.getState()], {type: 'application/json'});
+      var blob = new Blob([app.getJsonState()], {type: 'application/json'});
       toggleSaveState.href = window.URL.createObjectURL(blob);
     };
     toggleSaveState.download = 'state.json';

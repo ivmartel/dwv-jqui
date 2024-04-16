@@ -189,7 +189,7 @@ function launchApp() {
     }
 }
 // i18n ready?
-dwv.i18nOnInitialised( function () {
+dwv.i18n.onInitialised( function () {
     // call next once the overlays are loaded
     var onLoaded = function (data) {
         dwv.gui.info.overlayMaps = data;
@@ -200,7 +200,7 @@ dwv.i18nOnInitialised( function () {
     $.getJSON( dwv.i18nGetLocalePath("overlays.json"), onLoaded )
     .fail( function () {
         console.log("Using fallback overlays.");
-        $.getJSON( dwv.i18nGetFallbackLocalePath("overlays.json"), onLoaded );
+        $.getJSON( dwv.i18n.getFallbackLocalePath("overlays.json"), onLoaded );
     });
 });
 ]])
@@ -209,7 +209,7 @@ print([[
 // check environment support
 dwv.env.check();
 // initialise i18n
-dwv.i18nInitialise("auto", "/dwv-jqui/node_modules/dwv");
+dwv.i18n.initialise("auto", "/dwv-jqui/node_modules/dwv");
 // DOM ready?
 $(document).ready( function() {
     domContentLoaded = true;
