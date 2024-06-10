@@ -409,12 +409,12 @@ duplexify@^3.5.1:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-dwv@0.32.4:
-  version "0.32.4"
-  resolved "https://registry.yarnpkg.com/dwv/-/dwv-0.32.4.tgz#b2d331f3d4fba1c3743bdaff5ebdb1af66a60046"
-  integrity sha512-RdJPoIq/9u20ZyW8gLifYd7cvsnnqKZIVlDrNu0CNYxIDRCvnHojlhl5V6sS1KAQbZQGugsshpT09Lr9EfqQbA==
+dwv@0.33.0:
+  version "0.33.0"
+  resolved "https://registry.yarnpkg.com/dwv/-/dwv-0.33.0.tgz#727ba406593c52b10d8efbc4a54012f08de62f2d"
+  integrity sha512-RhfiUedI+4RNEjaLrfDoVjTm9gYVAAaZgKGZlwg7x6lU5nHGuipRjbHRhz+xfgiCPZ/s6t1+cQLkNw5rrr7Wjg==
   dependencies:
-    jszip "~3.10.1"
+    jszip "^3.10.1"
     konva "~8.4.2"
     magic-wand-tool "~1.1.7"
 
@@ -991,16 +991,16 @@ i18next-browser-languagedetector@~7.2.0:
     "@babel/runtime" "^7.23.2"
 
 i18next-http-backend@~2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.5.0.tgz#8396a7df30bfe722eff7a65f629df32a61720414"
-  integrity sha512-Z/aQsGZk1gSxt2/DztXk92DuDD20J+rNudT7ZCdTrNOiK8uQppfvdjq9+DFQfpAnFPn3VZS+KQIr1S/W1KxhpQ==
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.5.2.tgz#3d846cc239987fe7700d1cf0f17975807bfd25d3"
+  integrity sha512-+K8HbDfrvc1/2X8jpb7RLhI9ZxBDpx3xogYkQwGKlWAUXLSEGXzgdt3EcUjLlBCdMwdQY+K+EUF6oh8oB6rwHw==
   dependencies:
     cross-fetch "4.0.0"
 
 i18next@~23.11.2:
-  version "23.11.2"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.11.2.tgz#4c0e8192a9ba230fe7dc68b76459816ab601826e"
-  integrity sha512-qMBm7+qT8jdpmmDw/kQD16VpmkL9BdL+XNAK5MNbNFaf1iQQq35ZbPrSlqmnNPOSUY4m342+c0t0evinF5l7sA==
+  version "23.11.5"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.11.5.tgz#d71eb717a7e65498d87d0594f2664237f9e361ef"
+  integrity sha512-41pvpVbW9rhZPk5xjCX2TPJi2861LEig/YRhUkY+1FQ2IQPS0bKUDYnEqY8XPPbB48h1uIwLnP9iiEfuSl20CA==
   dependencies:
     "@babel/runtime" "^7.23.2"
 
@@ -1201,7 +1201,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
-jszip@~3.10.1:
+jszip@^3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/jszip/-/jszip-3.10.1.tgz#34aee70eb18ea1faec2f589208a157d1feb091c2"
   integrity sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==
