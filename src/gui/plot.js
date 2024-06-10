@@ -19,7 +19,8 @@ dwvjq.gui.info.Plot = function (div, app) {
       dwvjq.html.cleanNode(div);
     }
     // plot
-    plot(div, app.getImage(0).getHistogram());
+    const dataId0 = app.getDataIds()[0];
+    plot(div, app.getImage(dataId0).getHistogram());
   };
 
   /**
@@ -42,7 +43,8 @@ dwvjq.gui.info.Plot = function (div, app) {
     ];
 
     // plot
-    plot(div, app.getImage(0).getHistogram(), {markings: markings});
+    const dataId0 = app.getDataIds()[0];
+    plot(div, app.getImage(dataId0).getHistogram(), {markings: markings});
   };
 
   /**
