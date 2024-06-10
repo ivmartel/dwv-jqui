@@ -44,11 +44,13 @@ dwvjq.gui.info.MiniColourMap = function (div, app) {
     var lg = app.getActiveLayerGroup();
     var vl = lg.getActiveViewLayer();
     var viewController = vl.getViewController();
-    var colourMap = viewController.getColourMap();
+    var colourMapName = viewController.getColourMap();
+    var colourMap = dwv.luts[colourMapName];
     var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     // histogram sampling
     var c = 0;
-    var range = app.getImage(0).getRescaledDataRange();
+    const dataId0 = app.getDataIds()[0];
+    var range = app.getImage(dataId0).getRescaledDataRange();
     var minInt = range.min;
     var size = range.max - minInt;
     var incrC = size / canvas.width;
