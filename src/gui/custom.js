@@ -46,10 +46,9 @@ dwvjq.gui.Slider = function (app) {
    */
   this.initialise = function () {
     var dataId0 = app.getDataIds()[0];
-    var dataRange = app.getImage(dataId0).getDataRange();
+    var dataRange = app.getData(dataId0).image.getDataRange();
     var min = dataRange.min;
     var max = dataRange.max;
-    console.log(min, max);
 
     // jquery-ui slider
     $('#thresholdLi').slider({
