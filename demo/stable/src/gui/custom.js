@@ -45,18 +45,26 @@ dwvjq.gui.Slider = function (app) {
    * Initialise the slider HTML.
    */
   this.initialise = function () {
-    var dataRange = app.getImage(0).getDataRange();
+    var dataId0 = app.getDataIds()[0];
+    var dataRange = app.getData(dataId0).image.getDataRange();
     var min = dataRange.min;
     var max = dataRange.max;
 
     // jquery-ui slider
-    $('.thresholdLi').slider({
+    $('#thresholdLi').slider({
       range: true,
       min: min,
       max: max,
       values: [min, max],
       slide: function (event, ui) {
-        app.setFilterMinMax({min: ui.values[0], max: ui.values[1]});
+        app.setToolFeatures({
+          run: true,
+          runArgs: {
+            dataId: app.getDataIds()[0],
+            min: ui.values[0],
+            max: ui.values[1]
+          }
+        });
       }
     });
   };
