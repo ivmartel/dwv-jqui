@@ -134,25 +134,6 @@ dwvjq.gui.ToolboxContainer = function (app, infoController) {
 
     // apply button style
     $('button').button();
-
-    // save state button
-    var saveButton = document.createElement('button');
-    saveButton.appendChild(
-      document.createTextNode(dwvjq.i18n.t('basics.downloadState'))
-    );
-    // save state link
-    var toggleSaveState = document.createElement('a');
-    toggleSaveState.onclick = function () {
-      var blob = new Blob([app.getJsonState()], {type: 'application/json'});
-      toggleSaveState.href = window.URL.createObjectURL(blob);
-    };
-    toggleSaveState.download = 'state.json';
-    toggleSaveState.id = 'download-state';
-    toggleSaveState.className += 'download-state';
-    toggleSaveState.appendChild(saveButton);
-    // add to openData window
-    node = document.getElementById('openData');
-    node.appendChild(toggleSaveState);
   };
 
   this.display = function (flag) {
