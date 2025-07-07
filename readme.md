@@ -2,6 +2,12 @@
 
 Medical viewer using [DWV](https://github.com/ivmartel/dwv) (DICOM Web Viewer) and [jQuery UI](http://jqueryui.com/).
 
+---
+
+**Archived on 07/07/2025**: see other dwv demos for more actual integration examples.
+
+---
+
 All coding/implementation contributions and comments are welcome. Releases should be ready for deployment otherwise download the code and install dependencies with a `yarn` or `npm` `install`.
 
 dwv-jqui is not certified for diagnostic use. Released under GNU GPL-3.0 license (see [license.txt](license.txt)).
