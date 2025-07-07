@@ -1,4 +1,10 @@
 --
+-- ********** WARNING **********
+--
+-- This file is outdated and needs to be updated.
+--
+-- *****************************
+--
 -- dwv-jqui (medical viewer using DWV and jQuery UI) lua script
 --  for integration in a Conquest PACS server.
 --

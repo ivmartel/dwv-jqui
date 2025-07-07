@@ -426,7 +426,6 @@ dwvjq.gui.DrawList = function (app) {
     // create a color onkeyup handler
     var createColorOnKeyUp = function (annot) {
       return function () {
-        annot.colour = this.value;
         const drawController = new dwv.DrawController(annotationGroup);
         drawController.updateAnnotationWithCommand(
           annot.id,
@@ -439,7 +438,6 @@ dwvjq.gui.DrawList = function (app) {
     // create a text onkeyup handler
     var createDescriptionOnKeyUp = function (annot) {
       return function () {
-        annot.textExpr = this.value;
         const drawController = new dwv.DrawController(annotationGroup);
         drawController.updateAnnotationWithCommand(
           annot.id,
